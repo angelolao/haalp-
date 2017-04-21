@@ -32,12 +32,16 @@
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
 
+  <% unless @force_admin %>
   <div class="field">
     <%= f.label :user_type, "Hire", value: "poster"  %>
     <%= f.radio_button :user_type, "poster" %>
     <%= f.label :user_type, "Work", value: "worker" %>
     <%= f.radio_button :user_type, "worker" %>
   </div>
+  <% else %>
+    <%= f.hidden_field :user_type, value: "admin" %>
+  <% end %>
 
   <div class="actions">
     <%= f.submit "Sign up" %>
