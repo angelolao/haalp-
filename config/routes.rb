@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: {
+    registrations: "users/registrations",
+    omniauth_callbacks: "users/omniauth_callbacks"
+  }
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root to: 'pages#index'
 
@@ -7,13 +11,11 @@ Rails.application.routes.draw do
   get 'contact_us', to: 'pages#contact'
   get 'corporate', to: 'pages#corporate'
 
-  resources :users, only: [:index]
-
-  devise_for :users, controllers: {
-    omniauth_callbacks: "members/omniauth_callbacks"
-  }
-
-  #devise_scope :user do
-  #end
+  resources :tasks
+  resources :users, only: [:index, :create] do
+    collection do
+      get "new_user", to: "users#new_user", as: :new_user
+    end
+  end
 
 end

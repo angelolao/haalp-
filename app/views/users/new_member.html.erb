@@ -1,0 +1,35 @@
+<div class="container fb-container" id="contents_submenu">
+  <div class="row-fluid" align="center">
+    <div class="span8 offset2 well register-form-border">
+      <h4>We need additional information to finish your registration</h4>
+      <hr />
+      <%= form_for @member, url: create_member_members_path(@member), method: :post, html: { id: "fb_form" } do |f| %>
+        <%= render("shared/display_error", error: f.object.errors.messages) if f.object.errors.messages.present?  %>
+
+        <%= image_tag session[:facebook][:image], class: "img-circle", width: "85px" %>
+        <div class="form-group">
+          <div class="input-prepend">
+            <span class="add-on"><i class="fa fa-envelope"></i></span>
+            <%= f.text_field :email, readonly: true  %>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="input-prepend">
+            <span class="add-on"><i class="fa fa-user"></i></span>
+            <%= f.text_field :name, readonly: true  %>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="input-prepend">
+            <span class="add-on"><i class="fa fa-skype"></i></span>
+            <%= f.text_field :skype, placeholder: "Skype Account", autofocus: true %>
+          </div>
+        </div>
+
+        <%= button_tag(type: "submit", class: "btn btn-danger btn-large", data: { disable_with: "Register" }, style: "width:265px;") do %>
+          Register
+        <% end %>
+      <%end %>
+    </div>
+  </div><!-- row-fluid -->
+</div>
