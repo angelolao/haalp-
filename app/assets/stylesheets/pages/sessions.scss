@@ -67,7 +67,8 @@
   padding: 8px 14px;
   transition: background-color 0.3s;
 
-  &:hover {
+  &:hover,
+  &:focus {
     background-color: #098ab6;
     color: #fff;
     text-decoration: none;
