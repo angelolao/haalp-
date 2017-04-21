@@ -1,4 +1,4 @@
-<header id="menu" class="header header-transparent header-sticky">
+<header id="menu" class="header <%= (current_page?(root_path) && !user_signed_in?) ? "header-transparent" : "header-inner" %>">
   <nav class="navbar navbar-main">
     <div class="container-fluid">
       <div class="navbar-header">
@@ -9,7 +9,11 @@
           <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" href="#">
-          <%= image_tag "logo.png", class: "img-responsive", alt: "" %>
+          <% if (current_page?(root_path) && !user_signed_in?) %>
+            <%= image_tag "logo.png", class: "img-responsive", alt: "" %>
+          <% else %>
+            <%= image_tag "logo-2.png", class: "img-responsive", alt: "" %>
+          <% end %>
         </a>
       </div>
       <div id="navbar" class="navbar-collapse collapse">

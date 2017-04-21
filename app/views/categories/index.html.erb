@@ -3,14 +3,12 @@
 <br/>
 <br/>
 <br/>
-TASKS LIST:
+CATEGORIES LIST:
 
-<% @tasks.each do |t|%>
+<% @categories.each do |t|%>
 <ul>
   <li>id: <%= t.id %></li>
-  <li>poster: <%= t.user_id %></li>
   <li>title: <%= t.title %></li>
   <li>description: <%= t.description %></li>
 </ul>
 <% end %>
-
