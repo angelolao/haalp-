@@ -11,7 +11,15 @@ class User < ApplicationRecord
     :omniauthable,
     omniauth_providers: [:facebook]
 
+  TYPES = %w(worker poster admin)
+
   validates :email, :user_type, :password, presence: true
+
+  TYPES.each do |type|
+    define_method "#{type}?" do
+      self.user_type == type
+    end
+  end
 
   class << self
     def omniauth(auth)

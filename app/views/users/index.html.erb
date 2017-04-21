@@ -1,3 +1,32 @@
-<div>
-  HELLO WORLD!
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<div class="jumbotron">
+  <% if current_user.poster? %>
+    <button type="button" class="btn">Post a Task</button>
+  <% end  %>
+
+  <%= simple_form_for(:search, url: users_path, method: :get) do |f|  %>
+    <%= f.input_field :category, collection: Task::CATEGORIES, include_blank: "All Category", onclick: "this.form.submit()", selected: get_params[:category] %>
+    <%= f.submit "search", class: "btn", style: "margin-left: 10px;" %>
+  <% end %>
+</div>
+
+<div class="row">
+  <div class="col-sm-8 blog-main">
+    <% @tasks.each do |task| %>
+      <div class="blog-post">
+        <%= link_to task_path(task) do %>
+          <h2 class="blog-post-title"><%= task.title %></h2>
+        <% end %>
+        <h4>(₱<%= task.price %>)</h4>
+        <p class="blog-post-meta">[<%= task.status %>] <%= task.created_at.strftime("%F") %> by <%= link_to task.user.name, "#" %></p>
+      </div>
+      <hr />
+    <% end %>
+  </div>
 </div>

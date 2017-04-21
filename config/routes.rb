@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   get 'corporate', to: 'pages#corporate'
 
   resources :tasks
+  resources :categories
+
   resources :users, only: [:index, :create] do
     collection do
       get "new_user", to: "users#new_user", as: :new_user

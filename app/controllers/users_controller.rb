@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action :new_user_args, only: :new_user
 
   def index
-    @tasks = Task.all
+    @tasks = Task.search(params[:search] || {})
   end
 
   def new

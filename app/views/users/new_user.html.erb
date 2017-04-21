@@ -30,7 +30,7 @@
         <div class="form-group">
           <div class="input-prepend">
             <span class="add-on"><i class="fa fa-skype"></i></span>
-            <%= f.input :user_type, as: :radio_buttons, collection: %w(admin poster worker) %>
+            <%= f.input :user_type, as: :radio_buttons, collection: User::TYPES %>
           </div>
         </div>
 
