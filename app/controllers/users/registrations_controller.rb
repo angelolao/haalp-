@@ -2,6 +2,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   before_filter :configure_permitted_parameters, :only => [:create]
 
   def new
+    @force_admin = params[:force_admin] == "true"
     super
   end
 

@@ -1,10 +1,15 @@
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
 TASKS LIST:
 
 <% p @tasks  %>
 <% @tasks.each do |t|%>
 <ul>
   <li>id: <%= t.id %></li>
-  <li>poster: <%= t.poster_id %></li>
+  <li>poster: <%= t.user_id %></li>
   <li>title: <%= t.title %></li>
   <li>description: <%= t.description %></li>
 </ul>

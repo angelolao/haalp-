@@ -65,3 +65,4 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem "figaro"
 gem 'cancancan', '~> 1.10'
+gem 'simple_form'

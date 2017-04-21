@@ -1,6 +1,9 @@
 class UsersController < ApplicationController
+  before_action :admin_authenticate, only: :admin_index
+  before_action :new_user_args, only: :new_user
 
   def index
+    @tasks = Task.all
   end
 
   def new
@@ -8,13 +11,49 @@ class UsersController < ApplicationController
   end
 
   def new_user
-    binding.pry
-    args = session["facebook"]
-    @user = User.new(name: args["nickname"], email: args["email"])
     render layout: "guest"
   end
 
-  def create
-    binding.pry
+  def create_user
+    @user = User.new(create_user_args)
+    if @user.save
+      sign_in(:user, @user)
+      redirect_to root_path, notice: "Successfully signed in!"
+    else
+      render :new_member, layout: "guest"
+    end
+  end
+
+  def admin_index
+  end
+
+  private
+
+  def admin_authenticate
+
+  end
+
+  def new_user_args
+    args = session["facebook"]
+    ActionController::Parameters.permit_all_parameters = true
+    args = ActionController::Parameters.new(
+      name: args["name"],
+      email: args["email"],
+      uid: args["uid"]
+    )
+    @user = User.new(args.permit(:email, :name, :uid))
+  end
+
+  def create_user_args
+    params[:user].merge!(
+      password: Devise.friendly_token[0, 12],
+      provider: "facebook"
+    )
+
+    params.require(:user).permit(
+      :email, :password,
+      :name, :user_type,
+      :uid, :provider, :skype
+    )
   end
 end

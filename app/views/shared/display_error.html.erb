@@ -1,0 +1,12 @@
+<div class="alert alert-error span">
+  <% error.each do |key, val| %>
+    <span class="<%= (defined?(class_) && class_.present?) ? class_ : "pull-left" %>">
+      <% if defined? opt %>
+        <i class="fa fa-exclamation-circle"></i> <%= val -%>
+      <% else %>
+        <i class="fa fa-exclamation-circle"></i> <%= "#{key.to_s} #{val.first}".gsub key.to_s, t(key.to_s) -%>
+      <% end %>
+    </span>
+    <br />
+  <% end %>
+</div>
