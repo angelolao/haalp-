@@ -1,12 +1,9 @@
 class CreateTableUsers < ActiveRecord::Migration[5.0]
   def change
-    create_table  :users do |t|
-      t.string    :name,          null: false
-      t.string    :contact,        null: false
-      t.string    :skype
-      t.string    :image
-      t.timestamps  null: false
-    end
+    add_column :users, :name, :string
+    add_column :users, :contact, :string
+    add_column :users, :skype, :string
+    add_column :users, :image, :string
 
     create_table  :workers do |t|
       t.integer   :user_id,       null: false
