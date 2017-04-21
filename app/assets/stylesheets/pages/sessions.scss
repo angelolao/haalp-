@@ -1,3 +1,11 @@
+.sign-in-up-wrapper {
+  h2 {
+    font-weight: bold;
+    margin-bottom: 0;
+    margin-top: 0;
+  }
+}
+
 .sign-in-wrap {
   margin-top: 30px;
   overflow: hidden;
@@ -11,12 +19,6 @@
   float: left;
   padding: 35px;
   width: 50%;
-
-  h2 {
-    font-weight: bold;
-    margin-bottom: 0;
-    margin-top: 0;
-  }
 
   p {
     color: #888;
@@ -75,7 +77,8 @@
   }
 }
 
-.btn-sign-in {
+.btn-sign-in,
+.btn-sign-up {
   background-color: #1ebbf0;
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
@@ -116,6 +119,40 @@
 
 .sign-in-wrap {
   position: relative;
+}
+
+.sign-up-wrap {
+  background-color: #fff;
+  border: 1px solid #e1e6ef;
+  margin: 30px auto 50px;
+  padding: 35px;
+  width: 40%;
+
+  h2 {
+    margin-bottom: 25px;
+  }
+}
+
+.sign-up-btm {
+  margin-top: 20px;
+}
+
+.sign-up-exist {
+  margin-top: 15px;
+
+  > p {
+    float: left;
+    margin-right: 15px;
+  }
+
+  > a {
+    color: #06a5da;
+
+    &:hover {
+      color: #06a5da;
+      text-decoration: none;
+    }
+  }
 }
 
 @media(min-width: 1200px) {
