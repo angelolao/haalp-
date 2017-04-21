@@ -9,7 +9,7 @@
   <!-- Left side of the column -->
   <div>
     <h2><%= @task.title %></h2>
-    <p class="blog-post-meta">Posted by: <%= link_to @task.user.name, "#" %></p>
+    <p class="blog-post-meta">Posted by: <%= link_to @task.user.name, @task.user %></p>
     <div>
       <%= @task.description %>
     </div>
