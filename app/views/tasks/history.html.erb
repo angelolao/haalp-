@@ -1,0 +1,19 @@
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<% unless @tasks.empty? %>
+  TASKS history:
+  <% @tasks.each do |t|%>
+    <ul>
+      <li>id: <%= t.id %></li>
+      <li>poster: <%= t.user_id %></li>
+      <li>title: <%= t.title %></li>
+      <li>description: <%= t.description %></li>
+    </ul>
+  <% end %>
+<% else %>
+  no completed tasks
+<% end %>
+

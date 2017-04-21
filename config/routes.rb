@@ -23,4 +23,6 @@ Rails.application.routes.draw do
   authenticated :user do
     root to: "users#index"
   end
+
+  get 'tasks_history', to: 'tasks#history', as: :tasks_history
 end

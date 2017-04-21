@@ -12,7 +12,11 @@ class Task < ApplicationRecord
     ["Others", 7]
   ]
 
+  COMPLETED = "completed".freeze
+
   scope :scoped, -> { order("created_at DESC") }
+  scope :by_user, ->(id) { where(user_id: id) }
+  scope :completed, -> { where(status: COMPLETED) }
 
   class << self
 
