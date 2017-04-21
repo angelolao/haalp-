@@ -13,7 +13,7 @@ class OffersController < ApplicationController
   end
 
   def destroy
-
+    #@offer = Offer.find_by_id(params[])
   end
 
   private

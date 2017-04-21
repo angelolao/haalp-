@@ -26,6 +26,8 @@
               <% end %>
               <% if current_user.worker? %>
                 <button data-remodal-target="offer_modal" type="button" class="btn">Make an Offer</button>
+                <br />
+                <%= link_to "Cancel Offer", task_offer_path(@task), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-warning" %>
               <% elsif @task.user_id == current_user.id %>
                 <%= link_to "Offer(s)", task_offers_path(@task), class: "btn" %>
               <% end %>
@@ -44,23 +46,6 @@
     </div>
   </div>
 
-  <!-- Right side of the column -->
-  <div>
-    <h1>(₱<%= @task.price %>)</h1>
-
-    <% if current_user.worker? %>
-      <button type="button" class="btn" data-remodal-target="offer_modal">Make an Offer</button>
-      <%= link_to "Cancel Offer", task_offer_path(@task), confirm: "Are you sure?", method: :delete, class: "btn btn-warning" %>
-    <% elsif @task.user_id == current_user.id %>
-      <button type="button" class="btn" data-remodal-target="task_modal">Edit Task</button>
-      <%= link_to "Offer(s)", task_offers_path(@task), class: "btn btn-primary" %>
-    <% end %>
-
-    <div>
-      <h4>LOCATION: <%= @task.location %></h4>
-    </div>
-      <h4>DUE DATE: <%= @task.due_date.to_datetime.strftime("%F") %></h4>
-  </div>
   <div>
     <%= render partial: "offers/index" if @task.user_id == current_user.id %>
   </div>
