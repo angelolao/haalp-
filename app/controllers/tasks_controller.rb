@@ -11,8 +11,7 @@ class TasksController < ApplicationController
   end
 
   def create
-    task = Task.create(permit_parameters)
-    redirect_to task
+    redirect_to Task.create(permit_parameters)
   end
 
   def show
