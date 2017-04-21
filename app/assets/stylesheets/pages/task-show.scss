@@ -41,6 +41,15 @@
     &:hover {
       background-color: #06a5da;
     }
+
+
+    &-done {
+      background-color: #27ae60;
+
+      &:hover {
+        background-color: #1ea456;
+      }
+    }
   }
 }
 

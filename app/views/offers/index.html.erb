@@ -1,3 +1,5 @@
+<%= link_to "finishing hiring", close_hiring_path(id: params[:task_id]), method: :patch %>
+<br>
 Offers:
 
 <% @offers.each do |offer| %>

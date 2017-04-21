@@ -29,12 +29,12 @@ ActiveRecord::Schema.define(version: 20170421211705) do
   end
 
   create_table "offers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "worker_user_id",               null: false
-    t.integer  "task_id",                      null: false
-    t.text     "introduction",   limit: 65535
+    t.integer  "user_id",                    null: false
+    t.integer  "task_id",                    null: false
+    t.text     "introduction", limit: 65535
     t.string   "status"
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   create_table "tasks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

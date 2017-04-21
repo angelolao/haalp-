@@ -2,14 +2,18 @@
   <div class="row">
     <div class="col-md-12">
       <div class="dashboard-card">
-        <p><strong>STATUS:</strong> <span class="task-status task-status-<%= @task.status %>"><%= @task.status %></span></p>
+        <p>
+          <strong>STATUS:</strong>
+          <span class="task-status task-status-<%= @task.status %>">
+            <%= @task.status %>
+          </span>
+        </p>
         <div class="row">
           <div class="col-md-8">
             <div class="dashboard-card-header">
               <h1><%= @task.title %></h1>
               <h2 class="task-show-posted-by"><i class="fa fa-user"></i> <%= link_to @task.user.name, "#" %></h2>
             </div>
-
             <div class="task-show-desc">
               <p><%= @task.description %></p>
             </div>
@@ -17,6 +21,9 @@
           <div class="col-md-4 task-show-right">
             <div class="task-show-right-inner text-center">
               <h2>₱<%= @task.price %></h2>
+              <% if @task.status == "assigned" %>
+                <%= link_to "Task finished", complete_task_path(id: @task.id), method: :patch, class: "btn btn-done" %>
+              <% end %>
               <% if current_user.worker? %>
                 <button type="button" class="btn">Make an Offer</button>
               <% elsif @task.user_id == current_user.id %>

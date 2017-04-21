@@ -34,4 +34,6 @@ Rails.application.routes.draw do
   get 'tasks_history', to: 'tasks#history', as: :tasks_history
   get 'mock_payment', to: 'users#mock_payment', as: :mock_payment
   patch 'accept_payment', to: 'users#accept_payment', as: :accept_payment
+  patch 'close_hiring', to: 'tasks#close_hiring', as: :close_hiring
+  patch 'complete_task', to: 'tasks#complete_task', as: :complete_task
 end
