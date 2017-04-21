@@ -4,6 +4,10 @@
   .navbar-main {
     border-bottom-color: #e1e6ef;
   }
+
+  .navbar-nav-main > li > a {
+    display: none;
+  }
 }
 
 .navbar-main {
@@ -57,6 +61,7 @@
   line-height: 62px;
   padding: 15px 30px;
   text-transform: uppercase;
+
   &:hover, &:focus {
     background-color: transparent;
     color: #1ebbf0;

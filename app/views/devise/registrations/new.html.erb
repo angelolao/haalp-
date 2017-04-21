@@ -1,51 +1,74 @@
-<h2>Sign up</h2>
+<div class="sign-in-up-wrapper">
+  <div class="container">
+    <div class="sign-up-wrap">
+      <h2>Sign up</h2>
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= devise_error_messages! %>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-addon"><i class="fa fa-user"></i></div>
+            <%= f.text_field :name, autofocus: true, class: "form-control", placeholder: "Username" %>
+          </div>
+        </div>
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name, autofocus: true %>
-  </div>
-  <div class="field">
-    <%= f.label :contact %><br />
-    <%= f.number_field :contact, is: 11 %>
-  </div>
-  <div class="field">
-    <%= f.label :skype %><br />
-    <%= f.text_field :skype, autofocus: true %>
-  </div>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-addon"><i class="fa fa-phone"></i></div>
+            <%= f.number_field :contact, is: 11, class: "form-control", placeholder: "Contact number" %>
+          </div>
+        </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-addon"><i class="fa fa-skype"></i></div>
+            <%= f.text_field :skype, autofocus: true, class: "form-control", placeholder: "Skype" %>
+          </div>
+        </div>
 
-  <% unless @force_admin %>
-  <div class="field">
-    <%= f.label :user_type, "Hire", value: "poster"  %>
-    <%= f.radio_button :user_type, "poster" %>
-    <%= f.label :user_type, "Work", value: "worker" %>
-    <%= f.radio_button :user_type, "worker" %>
-  </div>
-  <% else %>
-    <%= f.hidden_field :user_type, value: "admin" %>
-  <% end %>
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-addon"><i class="fa fa-envelope"></i></div>
+            <%= f.email_field :email, autofocus: true, class: "form-control", placeholder: "Email" %>
+          </div>
+        </div>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-addon"><i class="fa fa-lock"></i></div>
+            <%= f.password_field :password, autocomplete: "off", class: "form-control", placeholder: "Password" %>
+          </div>
+        </div>
 
-<%= render "devise/shared/links" %>
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-addon"><i class="fa fa-lock"></i></div>
+            <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control", placeholder: "Confirm Password" %>
+          </div>
+        </div>
+
+        <% unless @force_admin %>
+          <div class="radio-inline">
+              <%= f.radio_button :user_type, "poster" %>
+              <%= f.label :user_type, "Hire", value: "poster"  %>
+          </div>
+          <div class="radio-inline">
+            <%= f.radio_button :user_type, "worker" %>
+            <%= f.label :user_type, "Work", value: "worker" %>
+          </div>
+        <% else %>
+          <%= f.hidden_field :user_type, value: "admin" %>
+        <% end %>
+
+        <div class="sign-up-btm">
+          <%= f.submit "Sign up", class: "btn btn-sign-up" %>
+        </div>
+      <% end %>
+
+      <div class="sign-up-exist">
+        <p>Already have an account?</p>
+        <%= render "devise/shared/links" %>
+      </div>
+    </div>
+  </div>
+</div>
