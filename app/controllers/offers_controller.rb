@@ -1,10 +1,6 @@
 class OffersController < ApplicationController
   load_and_authorize_resource except: [:create]
 
-  def index
-    @offers = Offer.search(params.slice(:task_id))
-  end
-
   def create
     redirect_to Offer.create(permit_parameters).task
   end
@@ -12,12 +8,11 @@ class OffersController < ApplicationController
   def aktion
     @offer = Offer.find_by_id(params[:offer][:id])
     res = @offer.update_attribute(:status, aktion_status)
-    #redirect_to task_offers_path(@offer.task_id), alert: (res ? "Successful!" : "Something went wrong")
-    if res
-      redirect_to task_path(params[:task_id])
-    else
-      redirect_to task_offers_path(@offer.task_id), alert: "Something went wrong"
-    end
+    redirect_to task_path(params[:task_id]), alert: (res ? "Successful!" : "Something went wrong!")
+  end
+
+  def destroy
+
   end
 
   private

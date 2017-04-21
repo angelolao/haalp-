@@ -18,6 +18,7 @@
 
     <% if current_user.worker? %>
       <button type="button" class="btn" data-remodal-target="offer_modal">Make an Offer</button>
+      <%= link_to "Cancel Offer", task_offer_path(@task), confirm: "Are you sure?", method: :delete, class: "btn btn-warning" %>
     <% elsif @task.user_id == current_user.id %>
       <button type="button" class="btn" data-remodal-target="task_modal">Edit Task</button>
       <%= link_to "Offer(s)", task_offers_path(@task), class: "btn btn-primary" %>
@@ -28,14 +29,19 @@
     </div>
       <h4>DUE DATE: <%= @task.due_date.to_datetime.strftime("%F") %></h4>
   </div>
+  <div>
+    <%= render partial: "offers/index" if @task.user_id == current_user.id %>
+  </div>
 </div>
 
 <hr />
 <!-- COMMENT SECTION -->
 
+<!--
 <div>
   <h1>COMMENT SECTION HERE!</h1>
 </div>
+-->
 
 <%= render partial: "/shared/task_modal", locals: { submit_action: "put", url: task_path(id: @task.id) } %>
 <%= render partial: "/shared/offer_modal", locals: { id: @task.id } %>
