@@ -1,8 +1,12 @@
 class OffersController < ApplicationController
-  load_and_authorize_resource
+  load_and_authorize_resource except: [:create]
 
   def index
     @offers = Offer.search(params.slice(:task_id))
+  end
+
+  def create
+    redirect_to Offer.create(permit_parameters).task
   end
 
   def aktion
@@ -17,4 +21,7 @@ class OffersController < ApplicationController
     { "Decline" => "declined" }[params[:commit]] || "accepted"
   end
 
+  def permit_parameters
+    params.require(:offer).permit(:worker_user_id, :task_id, :introduction)
+  end
 end

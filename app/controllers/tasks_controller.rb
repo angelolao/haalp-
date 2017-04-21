@@ -1,5 +1,8 @@
 class TasksController < ApplicationController
-  load_and_authorize_resource
+  load_and_authorize_resource except: [:create]
+
+  before_action :add_task, only: [:show, :update, :destroy]
+  before_action :stringify_categories, only: [:create, :update]
 
   def index
     @tasks = Task.all
@@ -9,6 +12,11 @@ class TasksController < ApplicationController
   end
 
   def edit
+  end
+
+  def update
+    @task.update_attributes(permit_parameters)
+    redirect_to @task
   end
 
   def create
@@ -36,5 +44,13 @@ class TasksController < ApplicationController
       :price,
       :worker_number
     )
+  end
+
+  def add_task
+    @task = Task.find(params[:id])
+  end
+
+  def stringify_categories
+    params[:task][:category_ids] = params[:task][:category_ids].join(",") if params[:task][:category_ids]
   end
 end
