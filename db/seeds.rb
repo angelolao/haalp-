@@ -11,13 +11,15 @@ status = %w(open)
 locations = ["Taguig City", "Makati City", "Quezon City"]
 
 10.times do |i|
-  Task.create! do |t|
-    t.user_id = 1,
-    t.status = status.sample,
-    t.title = titles[i],
-    t.category_ids = rand(0..7).to_s,
-    t.due_date = DateTime.current + 1.week,
-    t.description = "This a description example for #{titles[i]}. The quick brown fox jumps over the lazy dog.",
-    t.location = locations.sample
-  end
+  Task.create!(
+    user_id: 1,
+    status: status.sample,
+    title: titles[i],
+    category_ids: rand(0..7).to_s,
+    due_date: DateTime.current + 1.week,
+    description: "This a description example for #{titles[i]}. The quick brown fox jumps over the lazy dog.",
+    price: rand(500..1000),
+    worker_number: 1,
+    location: locations.sample
+  )
 end
