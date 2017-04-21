@@ -38,7 +38,7 @@
         <div class="sign-in-right-inner">
           <div class="sign-in-facebook">
             <h3>Connect with</h3>
-            <%= link_to "facebook", "#" %>
+            <%= link_to "facebook", user_facebook_omniauth_authorize_path %>
           </div>
           <h3>Don't have an account yet?</h3>
           <%- if devise_mapping.registerable? && controller_name != 'registrations' %>

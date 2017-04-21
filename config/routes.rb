@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: {
     registrations: "users/registrations",
+    omniauth_callbacks: "users/omniauth_callbacks"
   }
 
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root to: 'pages#index'
 
   get 'about_us', to: 'pages#about'
@@ -12,5 +12,15 @@ Rails.application.routes.draw do
 
   resources :tasks
   resources :categories
-  resources :users, only: [:index]
+
+  resources :users, only: [:index, :create] do
+    collection do
+      get "new_user", to: "users#new_user", as: :new_user
+      post "create_user", to: "users#create_user", as: :create_user
+    end
+  end
+
+  authenticated :user do
+    root to: "users#index"
+  end
 end

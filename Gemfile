@@ -40,8 +40,8 @@ gem 'simple_form'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
-  gem "better_errors"
-  gem "binding_of_caller"
+  gem 'pry-rails'
+  gem 'pry-nav'
 end
 
 group :development do
@@ -63,4 +63,9 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 ######
 
 gem 'devise'
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem "figaro"
+gem 'cancancan', '~> 1.10'
+gem 'simple_form'
 gem "font-awesome-rails"
