@@ -6,4 +6,7 @@ Rails.application.routes.draw do
   get 'about_us', to: 'pages#about'
   get 'contact_us', to: 'pages#contact'
   get 'corporate', to: 'pages#corporate'
+
+  resources :users, only: [:index]
+
 end
