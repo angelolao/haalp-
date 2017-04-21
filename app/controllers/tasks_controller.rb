@@ -26,4 +26,8 @@ class TasksController < ApplicationController
       :worker_number
     )
   end
+
+  def show
+    @task = Task.find(params[:id])
+  end
 end
