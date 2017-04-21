@@ -18,7 +18,11 @@
   <!-- Right side of the column -->
   <div>
     <h1>(₱<%= @task.price %>)</h1>
-    <button type="button" class="btn">Make an Offer</button>
+    <% if current_user.worker? %>
+      <button type="button" class="btn">Make an Offer</button>
+    <% elsif @task.user_id == current_user.id %>
+      <%= link_to "Offer(s)", task_offers_path(@task), class: "btn btn-primary" %>
+    <% end %>
     <div>
       <h4>LOCATION: <%= @task.location %></h4>
       <h4>DUE DATE: <%= @task.due_date.to_datetime.strftime("%F") %></h4>
