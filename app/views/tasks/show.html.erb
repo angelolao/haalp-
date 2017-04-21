@@ -1,38 +1,51 @@
-<br />
-<br />
-<br />
-<br />
-<br />
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="dashboard-card">
+        <p><strong>STATUS:</strong> <span class="task-status task-status-<%= @task.status %>"><%= @task.status %></span></p>
+        <div class="row">
+          <div class="col-md-8">
+            <div class="dashboard-card-header">
+              <h1><%= @task.title %></h1>
+              <h2 class="task-show-posted-by"><i class="fa fa-user"></i> <%= link_to @task.user.name, "#" %></h2>
+            </div>
 
-<div>
-  <p>STATUS: <%= @task.status %></p>
-  <!-- Left side of the column -->
-  <div>
-    <h2><%= @task.title %></h2>
-    <p class="blog-post-meta">Posted by: <%= link_to @task.user.name, "#" %></p>
-    <div>
-      <%= @task.description %>
+            <div class="task-show-desc">
+              <p><%= @task.description %></p>
+            </div>
+          </div><!-- left -->
+          <div class="col-md-4 task-show-right">
+            <div class="task-show-right-inner text-center">
+              <h2>₱<%= @task.price %></h2>
+              <% if current_user.worker? %>
+                <button type="button" class="btn">Make an Offer</button>
+              <% elsif @task.user_id == current_user.id %>
+                <%= link_to "Offer(s)", task_offers_path(@task), class: "btn" %>
+              <% end %>
+            </div>
+            <ul class="task-show-list">
+              <li>
+                <strong>LOCATION:</strong> <%= @task.location %>
+              </li>
+              <li>
+                <strong>DUE DATE:</strong> <%= @task.due_date.to_datetime.strftime("%F") %>
+              </li>
+            </ul>
+          </div><!-- right -->
+        <div>
+      </div>
     </div>
   </div>
+</div>
+
+<div>
+  <!-- Left side of the column -->
 
   <!-- Right side of the column -->
   <div>
-    <h1>(₱<%= @task.price %>)</h1>
-    <% if current_user.worker? %>
-      <button type="button" class="btn">Make an Offer</button>
-    <% elsif @task.user_id == current_user.id %>
-      <%= link_to "Offer(s)", task_offers_path(@task), class: "btn btn-primary" %>
-    <% end %>
     <div>
-      <h4>LOCATION: <%= @task.location %></h4>
-      <h4>DUE DATE: <%= @task.due_date.to_datetime.strftime("%F") %></h4>
     </div>
   </div>
 </div>
 
 <hr />
-
-<!-- COMMENT SECTION -->
-<div>
-  <h1>COMMENT SECTION HERE!</h1>
-</div>
