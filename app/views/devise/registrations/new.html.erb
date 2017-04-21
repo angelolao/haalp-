@@ -63,6 +63,15 @@
             <%= f.radio_button :user_type, "worker" %>
             <%= f.label :user_type, "Work", value: "worker" %>
           </div>
+
+          <div id="worker_categories" style="display:none">
+            Category Ids:<br/>
+            <% Category.select(:id, :title).each do |c| %>
+              <%= f.check_box :category_ids, { multiple: true }, c.id, nil %>
+              <label><%= c.title  %></label><br />
+            <% end %>
+          </div>
+
         <% else %>
           <%= f.hidden_field :user_type, value: "admin" %>
         <% end %>
@@ -79,3 +88,7 @@
     </div>
   </div>
 </div>
+
+<% content_for :extra_javascripts do %>
+  <%= javascript_include_tag "sign_up" %>
+<% end %>
