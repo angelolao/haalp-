@@ -1,0 +1,21 @@
+<div class="remodal" data-remodal-id="create_task_modal">
+  <button data-remodal-action="close" class="remodal-close"></button>
+  <h1>Post A Task!</h1>
+  <p>
+  Responsive, lightweight, fast, synchronized with CSS animations, fully customizable modal window plugin with declarative configuration and hash tracking.
+  </p>
+  <%= form_for(:task, url: tasks_path, as: :post) do |f| %>
+    <%= f.hidden_field :user_id, value: current_user.id %>
+    Titles: <%= f.text_field :title %><br />
+    Description : <%= f.text_area :description %><br />
+    Due Date    : <%= f.text_field :due_date %><br />
+    Location    : <%= f.text_field :location %><br />
+    Category Ids: <%= f.text_field :category_ids %><br />
+    Price:        <%= f.text_field :price %><br />
+    Worker Limit:        <%= f.text_field :worker_number %><br />
+  <br>
+  <button data-remodal-action="cancel" class="remodal-cancel">Cancel</button>
+  <%= submit_tag "Create Task!", class: "remodal-confirm" %>
+  <% end %>
+</div>
+

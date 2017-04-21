@@ -14,8 +14,14 @@ Rails.application.routes.draw do
   get 'contact_us', to: 'pages#contact'
   get 'corporate', to: 'pages#corporate'
 
-  resources :tasks
   resources :categories
+  resources :tasks do
+    resources :offers, only: :index do
+      collection do
+        put "aktion", to: "offers#aktion", as: :aktion
+      end
+    end
+  end
 
   resources :users, only: [:index, :create] do
     collection do
