@@ -1,0 +1,12 @@
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+ADD NEW CATEGORY:
+
+<%= form_for(:category, url: categories_path, as: :post) do |f| %>
+    Title: <%= f.text_field :title %><br />
+    Description : <%= f.text_area :description %><br />
+    <%= f.submit %>
+<% end %>
