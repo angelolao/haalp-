@@ -1,0 +1,66 @@
+.form-edit {
+  border-bottom: 1px solid #dedede;
+  margin-bottom: 30px;
+  padding-bottom: 40px;
+}
+
+.btn-edit-update {
+  background-color: #22bcf0;
+  border-radius: 0;
+  color: #fff;
+  margin-top: 20px;
+  padding: 9px 15px;
+  text-transform: capitalize;
+  transition: background-color 0.3s;
+
+  &:hover,
+  &:focus {
+    background-color: #06a5da;
+    color: #fff;
+  }
+}
+
+.money-holder {
+  background-color: #f9f9fa;
+  margin: 20px auto;
+  padding: 25px;
+
+  ul {
+    list-style: none;
+    overflow: hidden;
+    padding: 0;
+
+    li {
+      color: #888;
+      float: left;
+      line-height: normal;
+      margin-top: 12px;
+
+      &.money-holder-number {
+        color: #22bcf0;
+        font-size: 30px;
+        float: right !important;
+        margin-top: 0;
+      }
+    }
+  }
+
+  a {
+    background-color: #22bcf0;
+    border-radius: 0;
+    color: #fff;
+    display: block;
+    margin-top: 20px;
+    padding: 9px 15px;
+    text-align: center;
+    text-transform: capitalize;
+    transition: background-color 0.3s;
+
+    &:hover,
+    &:focus {
+      background-color: #06a5da;
+      color: #fff;
+      text-decoration: none;
+    }
+  }
+}
