@@ -4,10 +4,21 @@
   <%= devise_error_messages! %>
 
   <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name, autofocus: true %>
+  </div>
+  <div class="field">
+    <%= f.label :contact %><br />
+    <%= f.number_field :contact, is: 11 %>
+  </div>
+  <div class="field">
+    <%= f.label :skype %><br />
+    <%= f.text_field :skype, autofocus: true %>
+  </div>
+  <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true %>
   </div>
-
   <div class="field">
     <%= f.label :password %>
     <% if @minimum_password_length %>
@@ -19,6 +30,13 @@
   <div class="field">
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :user_type, "Hire", value: "poster"  %>
+    <%= f.radio_button :user_type, "poster" %>
+    <%= f.label :user_type, "Work", value: "worker" %>
+    <%= f.radio_button :user_type, "worker" %>
   </div>
 
   <div class="actions">
