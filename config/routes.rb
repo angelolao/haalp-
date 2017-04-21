@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   resources :categories
   resources :offers
   resources :tasks do
-    resources :offers, only: :index do
+    resources :offers, only: [:index, :destroy] do
       collection do
         put "aktion", to: "offers#aktion", as: :aktion
       end

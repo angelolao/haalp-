@@ -30,7 +30,7 @@
         <div class="form-group">
           <div class="input-group">
             <div class="input-group-addon"><i class="fa fa-globe"></i></div>
-            <%= f.input_field :location, collection: User::LOCATIONS, autofocus: true, class: "form-control" %>
+            <%= f.input_field :location, collection: %w(poster worker), autofocus: true, class: "form-control" %>
           </div>
         </div>
 

@@ -25,6 +25,7 @@ class TasksController < ApplicationController
 
   def show
     @task = Task.find(params[:id])
+    @offers = Offer.search(task_id: @task.id)
   end
 
   def history
