@@ -1,0 +1,19 @@
+.task-history-list {
+  border-bottom: 1px dashed #e1e6ef;
+  list-style: none;
+  padding: 20px;
+
+  h2 {
+    font-size: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  i {
+    margin-right: 5px;
+  }
+
+  &-created {
+    color: #22bcf0;
+  }
+}

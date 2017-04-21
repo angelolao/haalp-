@@ -1,19 +1,22 @@
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<% unless @tasks.empty? %>
-  TASKS history:
-  <% @tasks.each do |t|%>
-    <ul>
-      <li>id: <%= t.id %></li>
-      <li>poster: <%= t.user_id %></li>
-      <li>title: <%= t.title %></li>
-      <li>description: <%= t.description %></li>
-    </ul>
-  <% end %>
-<% else %>
-  no completed tasks
-<% end %>
-
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="dashboard-card">
+        <% unless @tasks.empty? %>
+          <div class="dashboard-card-header">
+            <h5>Tasks History:</h5>
+          </div>
+          <% @tasks.each do |t|%>
+            <ul class="task-history-list">
+              <li class="task-history-list-created"><i class="fa fa-calendar"></i><%= t.created_at %></li>
+              <li><h2><%= t.title %></h2></li>
+              <li><%= t.description %></li>
+            </ul>
+          <% end %>
+        <% else %>
+          no completed tasks
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
