@@ -11,5 +11,6 @@ Rails.application.routes.draw do
   get 'corporate', to: 'pages#corporate'
 
   resources :tasks
+  resources :categories
   resources :users, only: [:index]
 end
