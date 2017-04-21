@@ -1,5 +1,8 @@
 <div>
   <p>STATUS: <%= @task.status %></p>
+  <% if @task.status == "assigned" %>
+    <%= link_to "Task finished(click here if task is done)", complete_task_path(id: @task.id), method: :patch %>
+  <% end %>
   <!-- Left side of the column -->
   <div>
     <h2><%= @task.title %></h2>
