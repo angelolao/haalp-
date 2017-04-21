@@ -11,8 +11,8 @@ class ApplicationController < ActionController::Base
     respond_to do |format|
       format.json { head :forbidden }
       format.html {
-        if member_signed_in?
-          redirect_to new_contact_path
+        if user_signed_in?
+          redirect_to root_url
         else
           redirect_to root_url, alert: t("not_authorized")
         end

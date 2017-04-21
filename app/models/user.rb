@@ -13,12 +13,25 @@ class User < ApplicationRecord
 
   TYPES = %w(worker poster admin)
 
+  LOCATIONS = [
+    "Taguig City",
+    "Makati City",
+    "Quezon City",
+    "Pasig City",
+    "Pasay City"
+  ]
+
   validates :email, :user_type, :password, presence: true
 
   TYPES.each do |type|
     define_method "#{type}?" do
       self.user_type == type
     end
+  end
+
+  def rating
+    ratings = Comment.where(user_id: self.id).pluck(:rating)
+    ratings.empty? ? 0 : ratings.sum / ratings.size
   end
 
   class << self

@@ -7,7 +7,10 @@ class UsersController < ApplicationController
   end
 
   def new
+  end
 
+  def show
+    @user = User.find(params[:id])
   end
 
   def new_user
@@ -25,6 +28,20 @@ class UsersController < ApplicationController
   end
 
   def admin_index
+  end
+
+  def mock_payment
+  end
+
+  def accept_payment
+    ActionController::Parameters.permit_all_parameters = true
+    current_user.money += params[:user].require(:money).to_f
+    if current_user.save(validate: false)
+      flash[:notice] = "payment transferred"
+    else
+      flash[:error] = "something went wrong"
+    end
+    redirect_to edit_user_registration_path
   end
 
   private

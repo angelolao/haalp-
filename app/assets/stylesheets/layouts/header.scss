@@ -3,9 +3,14 @@
 
   .navbar-main {
     border-bottom-color: #e1e6ef;
+    margin-bottom: 40px;
   }
 
   .navbar-nav-main > li > a {
+    color: #414141;
+  }
+
+  .navbar-nav-out > li > a {
     display: none;
   }
 }
@@ -15,12 +20,12 @@
   -moz-border-radius: 0;
   border-radius: 0;
   border-bottom: 1px solid #777;
-  min-height: 93px;
+  min-height: 77px;
 }
 
 .navbar-brand {
   height: auto;
-  padding: 26px;
+  padding: 18px 26px;
 
   > img {
     height: 40px;
@@ -58,8 +63,8 @@
 
 .navbar-nav-main > li > a {
   color: #fff;
-  line-height: 62px;
-  padding: 15px 30px;
+  line-height: normal;
+  padding: 30px;
   text-transform: uppercase;
 
   &:hover, &:focus {

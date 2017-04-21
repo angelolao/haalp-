@@ -20,11 +20,17 @@
     <![endif]-->
   </head>
   <body class="<%= controller.controller_name%>">
-    <p class="notice hide"><%= notice %></p>
-    <p class="alert hide"><%= alert %></p>
     <%= render partial: 'shared/top_menu' %>
     <%= yield %>
 
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <% flash.each do |type, message|%>
+      <% type = (type.to_s == "notice" ) ? "success" : type.to_s %>
+      <script type="text/javascript">
+        alertify.set('notifier', 'position', 'top-left');
+        alertify.log("<%= message %>", "<%= type %>");
+      </script>
+    <% end %>
   </body>
 </html>

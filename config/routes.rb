@@ -24,7 +24,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :users, only: [:index, :create] do
+  resources :users, only: [:show, :index, :create] do
     collection do
       get "new_user", to: "users#new_user", as: :new_user
       post "create_user", to: "users#create_user", as: :create_user
@@ -32,4 +32,6 @@ Rails.application.routes.draw do
   end
 
   get 'tasks_history', to: 'tasks#history', as: :tasks_history
+  get 'mock_payment', to: 'users#mock_payment', as: :mock_payment
+  patch 'accept_payment', to: 'users#accept_payment', as: :accept_payment
 end

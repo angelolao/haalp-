@@ -31,10 +31,18 @@
     <%= f.password_field :current_password, autocomplete: "off" %>
   </div>
 
+  <div class="field">
+    <%= f.label :location %>
+    <%= f.select :location, User::LOCATIONS, autofocus: true, class: "form-control" %>
+  </div>
+
   <div class="actions">
     <%= f.submit "Update" %>
   </div>
 <% end %>
+
+<%= "money: #{current_user.money}" %>
+<%= link_to "add funds", mock_payment_path %>
 
 <h3>Cancel my account</h3>
 

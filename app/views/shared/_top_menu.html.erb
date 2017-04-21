@@ -17,23 +17,33 @@
         <% end %>
       </div>
       <div id="navbar" class="navbar-collapse collapse">
-        <ul class="nav navbar-nav navbar-nav-main navbar-right">
-          <% if user_signed_in? %>
+        <% if user_signed_in? %>
+          <ul class="nav navbar-nav navbar-nav-main navbar-nav-in navbar-right">
             <li>
-              <%= link_to 'Logout', destroy_user_session_path, :method => :delete %>
+              <% if current_user.poster? %>
+                <button type="button" class="btn btn-post-task" data-remodal-target="create_task_modal">Post a Task</button>
+              <% end  %>
             </li>
             <li>
               <%= link_to 'Task History', tasks_history_path %>
             </li>
-          <% else %>
             <li>
-              <%= link_to 'Login', new_user_session_path %>
+              <%= link_to 'Settings', edit_user_registration_path %>
             </li>
             <li>
-              <%= link_to 'sign up', new_user_registration_path %>
+              <%= link_to 'Logout', destroy_user_session_path, :method => :delete %>
             </li>
-          <% end %>
-        </ul>
+          </ul>
+        <% else %>
+          <ul class="nav navbar-nav navbar-nav-main navbar-nav-out navbar-right">
+              <li>
+                <%= link_to 'Login', new_user_session_path %>
+              </li>
+              <li>
+                <%= link_to 'sign up', new_user_registration_path %>
+              </li>
+          </ul>
+        <% end %>
       </div><!--/.nav-collapse -->
     </div><!--/.container-fluid -->
   </nav>

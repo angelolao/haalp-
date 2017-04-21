@@ -68,4 +68,5 @@ gem 'omniauth-facebook'
 gem "figaro"
 gem "cancan"
 gem 'simple_form'
-gem "font-awesome-rails"
+gem 'font-awesome-rails'
+gem 'alertify-rails'
