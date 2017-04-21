@@ -12,7 +12,12 @@ class OffersController < ApplicationController
   def aktion
     @offer = Offer.find_by_id(params[:offer][:id])
     res = @offer.update_attribute(:status, aktion_status)
-    redirect_to task_offers_path(@offer.task_id), alert: (res ? "Successful!" : "Something went wrong")
+    #redirect_to task_offers_path(@offer.task_id), alert: (res ? "Successful!" : "Something went wrong")
+    if res
+      redirect_to task_path(params[:task_id])
+    else
+      redirect_to task_offers_path(@offer.task_id), alert: "Something went wrong"
+    end
   end
 
   private
@@ -22,6 +27,6 @@ class OffersController < ApplicationController
   end
 
   def permit_parameters
-    params.require(:offer).permit(:worker_user_id, :task_id, :introduction)
+    params.require(:offer).permit(:user_id, :task_id, :introduction)
   end
 end
