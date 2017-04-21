@@ -5,7 +5,7 @@ class TasksController < ApplicationController
   before_action :stringify_categories, only: [:create, :update]
 
   def index
-    @tasks = Task.all
+    @tasks = Task.where.not(status: "completed")
   end
 
   def new
