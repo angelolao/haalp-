@@ -1,0 +1,127 @@
+.sign-in-wrap {
+  margin-top: 30px;
+  overflow: hidden;
+}
+
+.sign-in-left {
+  background-color: #fff;
+  border-color: #e1e6ef;
+  border-style: solid;
+  border-width: 1px 0 1px 1px;
+  float: left;
+  padding: 35px;
+  width: 50%;
+
+  h2 {
+    font-weight: bold;
+    margin-bottom: 0;
+    margin-top: 0;
+  }
+
+  p {
+    color: #888;
+    margin-bottom: 20px;
+    margin-top: 5px;
+  }
+}
+
+.sign-in-right {
+  background-color: #1ebbf0;
+  color: #fff;
+  float: left;
+  height: 100%;
+  position: absolute;
+  right: 0;
+  width: 50%;
+
+  &-inner {
+    color: #fff;
+    font-size: 30px;
+    position: absolute;
+    margin: auto;
+    right: 0;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    text-align: center;
+    display: table;
+    width: 80%;
+
+    h3 {
+      font-weight: bold;
+      margin-top: 0;
+    }
+  }
+}
+
+.sign-in-facebook {
+  border-bottom: 1px solid #fff;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+}
+
+.sign-up-now {
+  background-color: #1896c0;
+  color: #fff;
+  font-size: 14px;
+  padding: 8px 14px;
+  transition: background-color 0.3s;
+
+  &:hover,
+  &:focus {
+    background-color: #098ab6;
+    color: #fff;
+    text-decoration: none;
+  }
+}
+
+.btn-sign-in {
+  background-color: #1ebbf0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  color: #fff;
+  padding: 8px 28px;
+  transition: background-color 0.3s;
+
+  &:hover,
+  &:focus {
+    background-color: #06a5da;
+    color: #fff;
+  }
+}
+
+.remember-me-wrap {
+  color: #888;
+
+  label {
+    font-weight: normal;
+  }
+}
+
+.sign-in-btm {
+  margin-top: 20px;
+
+  a {
+    color: #1ebbf0;
+    margin-top: 5px;
+    transition: color 0.3s;
+
+    &:hover {
+      color: #06a5da;
+      text-decoration: none;
+    }
+  }
+}
+
+.sign-in-wrap {
+  position: relative;
+}
+
+@media(min-width: 1200px) {
+  .sign-in-wrap {
+    margin-left: auto;
+    margin-right: auto;
+    width: 760px;
+  }
+}
