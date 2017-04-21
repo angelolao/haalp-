@@ -29,6 +29,11 @@ class User < ApplicationRecord
     end
   end
 
+  def rating
+    ratings = Comment.where(user_id: self.id).pluck(:rating)
+    ratings.empty? ? 0 : ratings.sum / ratings.size
+  end
+
   class << self
     def omniauth(auth)
       user = where(provider: auth[:provider], uid: auth[:uid]).first

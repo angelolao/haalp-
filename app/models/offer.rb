@@ -1,5 +1,5 @@
 class Offer < ApplicationRecord
-  belongs_to :user
+  belongs_to :user, foreign_key: :worker_user_id
   belongs_to :task
 
   scope :by_task_id, -> task_id {

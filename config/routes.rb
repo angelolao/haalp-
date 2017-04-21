@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   get 'corporate', to: 'pages#corporate'
 
   resources :categories
+  resources :offers
   resources :tasks do
     resources :offers, only: :index do
       collection do
@@ -23,7 +24,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :users, only: [:index, :create] do
+  resources :users, only: [:show, :index, :create] do
     collection do
       get "new_user", to: "users#new_user", as: :new_user
       post "create_user", to: "users#create_user", as: :create_user

@@ -61,4 +61,5 @@
     </div>
   </div>
 </div>
-<%= render partial: "/shared/task_modal" %>
+
+<%= render partial: "/shared/task_modal", locals: { submit_action: "post", url: tasks_path }  %>
