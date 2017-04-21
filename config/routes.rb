@@ -4,6 +4,10 @@ Rails.application.routes.draw do
     omniauth_callbacks: "users/omniauth_callbacks"
   }
 
+  authenticated :user do
+    root to: "users#index"
+  end
+
   root to: 'pages#index'
 
   get 'about_us', to: 'pages#about'
@@ -18,10 +22,6 @@ Rails.application.routes.draw do
       get "new_user", to: "users#new_user", as: :new_user
       post "create_user", to: "users#create_user", as: :create_user
     end
-  end
-
-  authenticated :user do
-    root to: "users#index"
   end
 
   get 'tasks_history', to: 'tasks#history', as: :tasks_history
