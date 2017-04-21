@@ -10,7 +10,11 @@
     Description : <%= f.text_area :description %><br />
     Due Date    : <%= f.text_field :due_date %><br />
     Location    : <%= f.text_field :location %><br />
-    Category Ids: <%= f.text_field :category_ids %><br />
+    Category Ids:
+    <% Category.select(:id, :title).each do |c| %>
+      <%= f.check_box :category_ids, { multiple: true }, c.id, nil %>
+      <label><%= c.title  %></label><br />
+    <% end %>
     Price:        <%= f.text_field :price %><br />
     Worker Limit:        <%= f.text_field :worker_number %><br />
   <br>
