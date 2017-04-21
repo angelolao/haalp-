@@ -1,13 +1,6 @@
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-
 <div class="jumbotron">
   <% if current_user.poster? %>
-    <button type="button" class="btn">Post a Task</button>
+    <button type="button" class="btn" data-remodal-target="create_task_modal">Post a Task</button>
   <% end  %>
 
   <%= simple_form_for(:search, url: users_path, method: :get) do |f|  %>
@@ -32,3 +25,5 @@
     <% end %>
   </div>
 </div>
+
+<%= render partial: "/shared/task_modal" %>

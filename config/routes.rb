@@ -4,14 +4,24 @@ Rails.application.routes.draw do
     omniauth_callbacks: "users/omniauth_callbacks"
   }
 
+  authenticated :user do
+    root to: "users#index"
+  end
+
   root to: 'pages#index'
 
   get 'about_us', to: 'pages#about'
   get 'contact_us', to: 'pages#contact'
   get 'corporate', to: 'pages#corporate'
 
-  resources :tasks
   resources :categories
+  resources :tasks do
+    resources :offers, only: :index do
+      collection do
+        put "aktion", to: "offers#aktion", as: :aktion
+      end
+    end
+  end
 
   resources :users, only: [:index, :create] do
     collection do
@@ -20,9 +30,7 @@ Rails.application.routes.draw do
     end
   end
 
-  authenticated :user do
-    root to: "users#index"
-  end
-
   get 'tasks_history', to: 'tasks#history', as: :tasks_history
+  get 'mock_payment', to: 'users#mock_payment', as: :mock_payment
+  patch 'accept_payment', to: 'users#accept_payment', as: :accept_payment
 end

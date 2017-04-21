@@ -1,0 +1,22 @@
+Offers:
+
+<% @offers.each do |offer| %>
+  <% user = offer.user %>
+  <ul>
+    <li>
+      <%= image_tag "logo-2" %>
+      <% if offer.status.blank? %>
+        <%= simple_form_for :offer, url: aktion_task_offers_path(offer.task_id), method: :put do |f| %>
+          <%= f.hidden_field :id, value: offer.id %>
+          <%= f.submit "Decline", class: "btn btn-warning" %>
+          <%= f.submit "Accept", class: "btn btn-primary" %>
+        <% end %>
+      <% else %>
+        <div><%= offer.status.upcase %></div>
+      <% end %>
+    </li>
+    <li>Name: <%= "#{user.name} (#{user.email})" %></li>
+    <li>Price: <%= offer.task.price %></li>
+    <li>Introduction: <%= offer.introduction %></li>
+  </ul>
+<% end %>

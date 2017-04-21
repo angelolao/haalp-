@@ -1,0 +1,9 @@
+CATEGORY:
+
+<ul>
+  <li>id: <%= @category.id %></li>
+  <li>title: <%= @category.title %></li>
+  <li>description: <%= @category.description %></li>
+  <%= link_to "Edit", edit_category_path(id: @category.id) %>
+  <%= link_to "Delete", category_path(id: @category.id), method: :delete %>
+</ul>

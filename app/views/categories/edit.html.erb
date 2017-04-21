@@ -1,0 +1,5 @@
+EDIT CATEGORY:
+
+<%= form_for(:category, url: category_path(id: @category.id), method: :put) do |f| %>
+<%= render "form", f: f %>
+<% end %>

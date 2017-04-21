@@ -60,6 +60,15 @@
   border-bottom: 1px solid #fff;
   padding-bottom: 20px;
   margin-bottom: 20px;
+
+  > a {
+    background: image-url("login-facebook.png") no-repeat;
+    background-size: contain;
+    color: transparent;
+    display: table;
+    margin: 20px auto 0;
+    width: 182px;
+  }
 }
 
 .sign-up-now {
@@ -153,6 +162,16 @@
       text-decoration: none;
     }
   }
+}
+
+.sign-up-facebook-link {
+  background: image-url("signup-facebook.png") no-repeat;
+  background-size: contain;
+  color: transparent !important;
+  display: table;
+  height: 37px;
+  margin-top: 20px;
+  width: 187px;
 }
 
 @media(min-width: 1200px) {
