@@ -12,6 +12,10 @@ class TasksController < ApplicationController
     redirect_to tasks_path
   end
 
+  def show
+    @task = Task.find(params[:id])
+  end
+
   private
 
   def permit_parameters
@@ -25,9 +29,5 @@ class TasksController < ApplicationController
       :price,
       :worker_number
     )
-  end
-
-  def show
-    @task = Task.find(params[:id])
   end
 end
