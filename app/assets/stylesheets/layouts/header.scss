@@ -38,6 +38,7 @@
 }
 
 .hero-img {
+  background: image-url("banner.png") no-repeat;
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
@@ -45,12 +46,10 @@
 
 .hero-caption, .page-cover .cover-caption {
   position: absolute !important;
+  left: 0;
   min-width: 550px;
+  right: 0;
   top: 31%;
-}
-
-.hero-img {
-  background: image-url("banner.png") no-repeat;
 }
 
 .navbar-nav-main > li > a {
