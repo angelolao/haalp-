@@ -8,7 +8,8 @@ class OffersController < ApplicationController
   def aktion
     @offer = Offer.find_by_id(params[:offer][:id])
     res = @offer.update_attribute(:status, aktion_status)
-    redirect_to task_path(params[:task_id]), alert: (res ? "Successful!" : "Something went wrong!")
+    flash[:notice] = res ? "Offer #{aktion_status}!" : "Something went wrong!"
+    redirect_to :back
   end
 
   def destroy
