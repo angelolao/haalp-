@@ -1,29 +1,64 @@
-<div class="jumbotron">
-  <% if current_user.poster? %>
-    <button type="button" class="btn" data-remodal-target="create_task_modal">Post a Task</button>
-  <% end  %>
-
-  <%= simple_form_for(:search, url: users_path, method: :get) do |f|  %>
-    <%= f.input_field :category, collection: Task::CATEGORIES, include_blank: "All Category", onchange: "this.form.submit()", selected: get_params[:category] %>
-    <%= f.input_field :location, collection: User::LOCATIONS, include_blank: "All Cities", onchange: "this.form.submit()", selected: get_params[:location] %>
-    <%= f.input_field :text, placeholder: "Search any keyword", value: get_params[:text], class: "input-medium" %>
-    <%= f.submit "search", class: "btn", style: "margin-left: 10px;" %>
-  <% end %>
-</div>
-
-<div class="row">
-  <div class="col-sm-8 blog-main">
-    <% @tasks.each do |task| %>
-      <div class="blog-post">
-        <%= link_to task_path(task) do %>
-          <h2 class="blog-post-title"><%= task.title %></h2>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="dashboard-card">
+        <div class="dashboard-card-header">
+          <h5>Search for Tasks</h5>
+        </div>
+        <%= simple_form_for(:search, url: users_path, html: { class: 'form-search' }, method: :get) do |f|  %>
+          <%= f.input_field :text, placeholder: "Search any keyword", value: get_params[:text], class: "form-control" %>
+          <%= f.input_field :category, collection: Task::CATEGORIES, include_blank: "All Category", onclick: "this.form.submit()", selected: get_params[:category], class: "selectpicker" %>
+          <%= f.input_field :location, collection: User::LOCATIONS, include_blank: "All Cities", onchange: "this.form.submit()", selected: get_params[:location], class: "selectpicker" %>
+          <%= f.submit "Search", class: "btn btn-search btn-block" %>
         <% end %>
-        <h4>(₱<%= task.price %>)</h4>
-        <p class="blog-post-meta">[<%= task.status %>] <%= task.created_at.strftime("%F") %> by <%= link_to task.user.name, "#" %></p>
       </div>
-      <hr />
-    <% end %>
+    </div>
+
+    <div class="col-md-9">
+      <div class="dashboard-card">
+        <div class="dashboard-card-header">
+          <h5>Tasks List</h5>
+        </div>
+        <div class="task-holder">
+          <% @tasks.each do |task| %>
+            <div class="task-post">
+              <figure>
+                <%= image_tag "prof-image.png", alt: "" %>
+              </figure>
+              <div class="task-post-content-right">
+                <ul class="task-post-desc-list">
+                  <li>
+                    <%= link_to task_path(task) do %>
+                      <h2 class="task-post-title"><%= task.title %></h2>
+                    <% end %>
+                  </li>
+                  <li>
+                    <span class="task-status task-status-<%= task.status %>"><%= task.status %></span>
+                  </li>
+                </ul>
+                <ul class="task-post-desc-list task-post-desc-list-2">
+                  <li>
+                    <i class="fa fa-money"></i>
+                    ₱<%= task.price %>
+                  </li>
+                  <li>
+                    <i class="fa fa-calendar"></i>
+                    <%= task.created_at.strftime("%F") %>
+                  </li>
+                  <li>
+                    <i class="fa fa-user"></i>
+                    <span><%= link_to task.user.name, "#" %></span>
+                  </li>
+                </ul>
+              </div>
+              <div class="task-post-view-more">
+                <%= link_to "view more", task_path(task), class: "btn btn-view-more" %>
+              </div>
+            </div><!-- task-post -->
+          <% end %>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
-
 <%= render partial: "/shared/task_modal" %>
