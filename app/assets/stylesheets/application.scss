@@ -12,10 +12,19 @@
  *
  */
 
+// GLOBAL
 @import "bootstrap.min";
 @import "global/base";
+
+// LAYOUTS
 @import "layouts/header";
+
+// PAGES
 @import "pages/sessions";
+@import "pages/dashboard";
+
+// VENDORS
+@import "bootstrap-select.min";
 @import "font-awesome";
 @import "remodal";
 @import "remodal-default-theme";
