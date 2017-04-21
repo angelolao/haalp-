@@ -1,6 +1,8 @@
 class TasksController < ApplicationController
   load_and_authorize_resource
 
+  before_action :add_task, only: [:show, :update, :destroy]
+
   def index
     @tasks = Task.all
   end
@@ -9,6 +11,11 @@ class TasksController < ApplicationController
   end
 
   def edit
+  end
+
+  def update
+    @task.update_attributes(permit_parameters)
+    redirect_to @task
   end
 
   def create
@@ -36,5 +43,9 @@ class TasksController < ApplicationController
       :price,
       :worker_number
     )
+  end
+
+  def add_task
+    @task = Task.find(params[:id])
   end
 end
