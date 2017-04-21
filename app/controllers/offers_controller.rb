@@ -14,7 +14,8 @@ class OffersController < ApplicationController
     res = @offer.update_attribute(:status, aktion_status)
     #redirect_to task_offers_path(@offer.task_id), alert: (res ? "Successful!" : "Something went wrong")
     if res
-      redirect_to task_path(params[:task_id])
+      flash[:notice] = "Offer #{aktion_status}!"
+      redirect_to :back
     else
       redirect_to task_offers_path(@offer.task_id), alert: "Something went wrong"
     end
