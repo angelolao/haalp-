@@ -7,9 +7,11 @@ class TasksController < ApplicationController
   def new
   end
 
+  def edit
+  end
+
   def create
-    Task.create(permit_parameters)
-    redirect_to tasks_path
+    redirect_to Task.create(permit_parameters)
   end
 
   def show
