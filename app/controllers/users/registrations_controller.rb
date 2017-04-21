@@ -3,6 +3,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   skip_before_action :authenticate_user!
 
   def new
+    @force_admin = params[:force_admin] == "true"
     super
   end
 
