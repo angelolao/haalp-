@@ -13,6 +13,14 @@ class User < ApplicationRecord
 
   TYPES = %w(worker poster admin)
 
+  LOCATIONS = [
+    "Taguig City",
+    "Makati City",
+    "Quezon City",
+    "Pasig City",
+    "Pasay City"
+  ]
+
   validates :email, :user_type, :password, presence: true
 
   TYPES.each do |type|

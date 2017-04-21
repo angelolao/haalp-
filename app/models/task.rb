@@ -24,12 +24,24 @@ class Task < ApplicationRecord
       if args.blank? then scoped
       else
         self.by_category(args[:category])
+            .by_location(args[:location])
+            .by_text(args[:text])
       end
     end
 
     def by_category(category)
       return scoped if category.blank?
       where("category_ids LIKE ?", category)
+    end
+
+    def by_location(location)
+      return scoped if location.blank?
+      where("location LIKE ?", location)
+    end
+
+    def by_text(text)
+      return scoped if text.blank?
+      where("title LIKE :text", text: "%#{text}%")
     end
 
   end
