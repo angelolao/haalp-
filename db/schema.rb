@@ -10,20 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170421112046) do
+ActiveRecord::Schema.define(version: 20170421120038) do
 
-  create_table "category", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "title",       null: false
     t.string   "description", null: false
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
 
+  create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "task_id",        null: false
+    t.integer  "user_id",        null: false
+    t.integer  "poster_user_id", null: false
+    t.integer  "rating",         null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
   create_table "offers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "worker_id",  null: false
-    t.integer  "task_id",    null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "worker_user_id", null: false
+    t.integer  "task_id",        null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   create_table "posters", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -33,17 +42,17 @@ ActiveRecord::Schema.define(version: 20170421112046) do
   end
 
   create_table "tasks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "poster_id",                    null: false
-    t.integer  "status",                       null: false
-    t.string   "title",                        null: false
-    t.string   "due_date",                     null: false
-    t.string   "description",                  null: false
-    t.string   "location",                     null: false
+    t.integer  "poster_user_id",                null: false
+    t.integer  "status",                        null: false
+    t.string   "title",                         null: false
+    t.string   "due_date",                      null: false
+    t.string   "description",                   null: false
+    t.string   "location",                      null: false
     t.string   "category_ids"
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
     t.integer  "worker_id"
-    t.decimal  "price",         precision: 10
+    t.decimal  "price",          precision: 10
     t.integer  "worker_number"
   end
 
