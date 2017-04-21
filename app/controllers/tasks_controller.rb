@@ -16,6 +16,10 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
   end
 
+  def history
+    @tasks = Task.by_user(current_user.id).completed
+  end
+
   private
 
   def permit_parameters
