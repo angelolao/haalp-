@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170421135225) do
+ActiveRecord::Schema.define(version: 20170421202930) do
 
   create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "title",       null: false
@@ -66,11 +66,12 @@ ActiveRecord::Schema.define(version: 20170421135225) do
     t.string   "skype"
     t.string   "image"
     t.string   "status"
+    t.string   "location"
     t.string   "user_type"
     t.string   "uid"
+    t.string   "provider"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
-    t.string   "provider"
     t.string   "category_ids"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
