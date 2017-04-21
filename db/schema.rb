@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170421132731) do
+ActiveRecord::Schema.define(version: 20170421135225) do
 
   create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "title",       null: false
@@ -35,24 +35,18 @@ ActiveRecord::Schema.define(version: 20170421132731) do
     t.datetime "updated_at",     null: false
   end
 
-  create_table "posters", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "tasks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "poster_user_id",                                 null: false
-    t.string   "status",                        default: "open", null: false
-    t.string   "title",                                          null: false
-    t.string   "due_date",                                       null: false
-    t.string   "description",                                    null: false
-    t.string   "location",                                       null: false
+    t.integer  "user_id",                      null: false
+    t.string   "status",                       null: false
+    t.string   "title",                        null: false
+    t.string   "due_date",                     null: false
+    t.string   "description",                  null: false
+    t.string   "location",                     null: false
     t.string   "category_ids"
-    t.datetime "created_at",                                     null: false
-    t.datetime "updated_at",                                     null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
     t.integer  "worker_id"
-    t.decimal  "price",          precision: 10
+    t.decimal  "price",         precision: 10
     t.integer  "worker_number"
   end
 
@@ -75,15 +69,9 @@ ActiveRecord::Schema.define(version: 20170421132731) do
     t.string   "image"
     t.string   "status"
     t.string   "user_type"
+    t.string   "category_ids"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
-  end
-
-  create_table "workers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "user_id",      null: false
-    t.string   "category_ids"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
   end
 
 end
