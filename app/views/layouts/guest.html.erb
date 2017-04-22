@@ -9,8 +9,7 @@
   </head>
 
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <%= render partial: 'shared/alertify_set' %>
     <%= render partial: 'shared/top_menu' %>
     <%= yield %>
   </body>
