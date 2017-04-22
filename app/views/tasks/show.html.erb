@@ -45,7 +45,6 @@
                   <div class="rating-holder">
                     <%= simple_form_for :comment, url: comments_path do |c| %>
                       <%= c.hidden_field :task_id, value: @task.id %>
-                      <%= c.hidden_field :user_id, value: @offers.first.try(:id) %>
                       <%= c.hidden_field :poster_user_id, value: current_user.id %>
 
                       <div class="form-group">
