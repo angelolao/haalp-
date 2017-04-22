@@ -25,7 +25,7 @@
             <div class="user-profile-comment-wrap">
               <% @comments.each do |comment| %>
                 <ul class="user-profile-comment">
-                  <li><strong>Poster Name:</srong> <%= comment.poster.name  %></li>
+                  <li><strong>Poster Name:</strong> <%= comment.poster.name  %></li>
                   <li><strong>Rate:</strong> <%= ("*&nbsp;&nbsp;" * comment.rating).html_safe %> </li>
                   <li><strong>Note:</strong> <%= comment.note %> </li>
                 </ul>
