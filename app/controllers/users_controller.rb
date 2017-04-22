@@ -24,7 +24,7 @@ class UsersController < ApplicationController
       sign_in(:user, @user)
       redirect_to root_path, notice: "Successfully signed in!"
     else
-      render :new_member, layout: "guest"
+      render :new_user, layout: "guest"
     end
   end
 
