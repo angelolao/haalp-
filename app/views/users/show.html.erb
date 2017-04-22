@@ -1,10 +1,32 @@
-<ul>
-  <li>name: <%= @user.name %> </li>
-  <li>contact: <%= @user.contact %> </li>
-  <li>location: <%= @user.location %> </li>
-  <li>categories: <%= @user.category_ids %> </li>
-  <li>rating: <%= @user.rating %> </li>
-</ul>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="dashboard-card">
+        <div class="dashboard-card-header">
+          <h5>User Profile</h5>
+        </div>
+        <div class="row">
+          <div class="col-md-3">
+            <figure>
+              <%= image_tag "prof-image.png", alt: "" %>
+            </figure>
+          </div>
+          <div class="col-md-9">
+            <div class="user-profile-name-holder">
+              <h1><%= @user.name %> </h1>
+              <h4><%= @user.location %></h4>
+            </div>
+            <ul class="user-profile-list">
+              <li><strong>Contact:</strong> <%= @user.contact %> </li>
+              <li><strong>Categories:</strong> <%= @user.category_ids %> </li>
+              <li><strong>Rating:</strong> <%= @user.rating %> </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <ul>
   <% @comments.each do |comment| %>
