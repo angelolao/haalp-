@@ -1,5 +1,12 @@
+<% if current_user.id == params[:id] %>
+  <%= link_to "finishing hiring", close_hiring_path(id: params[:id]), method: :patch, class: "btn btn-primary" %>
+<% end %>
+
+<br>
+
 <h3>Offers:</h3>
 
+<%= "Offer(s)" if @offers.count > 0  %>
 <% @offers.each do |offer| %>
   <% user = offer.user %>
   <div class="offers-list-entry">
@@ -14,18 +21,26 @@
       </ul>
     </div>
     <div class="col-md-3">
-      <% if offer.status.blank? %>
-        <%= simple_form_for :offer, url: aktion_task_offers_path(offer.task_id), method: :put do |f| %>
-          <%= f.hidden_field :id, value: offer.id %>
-          <%= f.submit "Decline", class: "btn btn-decline" %>
-          <%= f.submit "Accept", class: "btn btn-accept" %>
-        <% end %>
-      <% else %>
-        <div><%= offer.status.upcase %></div>
-      <% end %>
+      <ul>
+        <li>
+          <% if offer.status.blank? %>
+            <%= simple_form_for :offer, url: aktion_task_offers_path(offer.task_id), method: :put do |f| %>
+              <%= f.hidden_field :id, value: offer.id %>
+              <%= f.submit "Decline", class: "btn btn-decline" %>
+              <%= f.submit "Accept", class: "btn btn-accept" %>
+            <% end %>
+          <% else %>
+            <div><%= offer.status.upcase %></div>
+          <% end %>
+        </li>
+        <li>Name: <%= "#{user.name} (#{user.email})" %></li>
+        <li>Price: <%= Income.worker_income(offer.slice(:user_id, :task_id)) %></li>
+        <li>Introduction: <%= offer.introduction %></li>
+      </ul>
     </div>
   </div>
+
 <% end %>
 <div class="end-wrap text-right">
-  <%= link_to "End hiring?", close_hiring_path(id: params[:task_id]), method: :patch %>
+  <%= link_to "End hiring?", close_hiring_path(id: params[:id]), method: :patch %>
 </div>

@@ -19,11 +19,15 @@
       <div id="navbar" class="navbar-collapse collapse">
         <% if user_signed_in? %>
           <ul class="nav navbar-nav navbar-nav-main navbar-nav-in navbar-right">
-            <li>
-              <% if current_user.poster? %>
+            <% if current_user.worker? || current_user.admin? %>
+              <% owned = current_user.worker? ? "worker" : "company" %>
+              <li><%= link_to "Income ₱#{Income.my_income(current_user.id, owned)}", "javascript:void(0)" %></li>
+            <% end %>
+            <% if current_user.poster? %>
+              <li>
                 <button type="button" class="btn btn-post-task" data-remodal-target="task_modal">Post a Task</button>
-              <% end  %>
-            </li>
+              </li>
+            <% end  %>
             <li>
               <%= link_to 'Task History', tasks_history_path %>
             </li>

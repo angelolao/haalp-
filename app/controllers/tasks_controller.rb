@@ -20,6 +20,7 @@ class TasksController < ApplicationController
   end
 
   def create
+    params[:task][:due_date] = DateTime.current + 7.days
     redirect_to Task.create(permit_parameters)
   end
 
@@ -47,6 +48,7 @@ class TasksController < ApplicationController
     task = Task.find(params[:id])
     task.status = "completed"
     if task.save
+      amend_income
       flash[:notice] = "Task completed!"
     else
       flash[:error] = "Something went wrong"
@@ -55,6 +57,30 @@ class TasksController < ApplicationController
   end
 
   private
+
+  def amend_income
+    workers = Offer.search(
+      task_id: params[:id],
+      status: "accepted"
+    )
+    task = Task.find(params[:id])
+    workers.each do |worker|
+      no_hired = Offer.no_hired(task_id: task.id)
+      commission = (task.price / no_hired) * Task::COMMISSION
+      create_income(worker, (task.price / no_hired) - commission, "worker")
+      create_income(worker, commission, "company")
+    end
+  end
+
+  def create_income(worker, income, owned)
+    Income.create(
+      user_id: worker.user_id,
+      poster_id: current_user.id,
+      task_id: params[:id],
+      income: income,
+      owned: owned
+    )
+  end
 
   def permit_parameters
     params.require(:task).permit(
