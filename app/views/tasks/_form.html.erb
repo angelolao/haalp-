@@ -1,4 +1,5 @@
 <%= simple_form_for :task, url: tasks_path, as: :post do |f| %>
+    <%= f.hidden_field :due_date, value: (DateTime.current + 7.days).strftime("%F %T") %>
     Poster Id: <%= f.text_field :user_id %><br />
     Titles: <%= f.text_field :title %><br />
     Description : <%= f.text_area :description %><br />
