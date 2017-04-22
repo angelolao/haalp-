@@ -65,8 +65,9 @@ class TasksController < ApplicationController
     )
     task = Task.find(params[:id])
     workers.each do |worker|
-      commission = (task.price / Offer.no_hired(task_id: task.id)) * Task::COMMISSION
-      create_income(worker, (task.price / Offer.no_hired(task_id: task.id)) - commission, "worker")
+      no_hired = Offer.no_hired(task_id: task.id)
+      commission = (task.price / no_hired) * Task::COMMISSION
+      create_income(worker, (task.price / no_hired) - commission, "worker")
       create_income(worker, commission, "company")
     end
   end
