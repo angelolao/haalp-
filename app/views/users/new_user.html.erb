@@ -44,7 +44,7 @@
             </div>
 
             <div id="worker_categories" style="display:none">
-              Category Ids:<br/>
+              Categories:<br/>
               <% Category.select(:id, :title).each do |c| %>
                 <%= f.check_box :category_ids, { multiple: true }, c.id, nil %>
                 <label><%= c.title  %></label><br />

@@ -9,13 +9,7 @@
   </head>
 
   <body>
-    <% flash.each do |type, message|%>
-      <% type = (type.to_s == "notice" ) ? "success" : type.to_s %>
-      <script type="text/javascript">
-        alertify.set('notifier', 'position', 'top-left');
-        alertify.log("<%= message %>", "<%= type %>");
-      </script>
-    <% end %>
+    <%= render partial: 'shared/alertify_set' %>
     <%= render partial: 'shared/top_menu' %>
     <%= yield %>
   </body>
