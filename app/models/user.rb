@@ -11,6 +11,8 @@ class User < ApplicationRecord
     :omniauthable,
     omniauth_providers: [:facebook]
 
+  has_many :comments
+
   TYPES = %w(worker poster admin)
 
   LOCATIONS = [

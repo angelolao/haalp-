@@ -15,7 +15,7 @@
     </figure>
     <div class="col-md-7">
       <ul>
-        <li class="offers-list-name"><%= "#{user.name} (#{user.email})" %></li>
+        <li class="offers-list-name"><%= link_to "#{user.name} (#{user.email})", user_path(user) %></li>
         <li class="offers-list-price"><i class="fa fa-money"></i>₱<%= offer.task.price %></li>
         <li class="offers-list-intro"><%= offer.introduction %></li>
       </ul>
@@ -33,7 +33,6 @@
             <div><%= offer.status.upcase %></div>
           <% end %>
         </li>
-        <li>Name: <%= "#{user.name} (#{user.email})" %></li>
         <li>Price: <%= Income.worker_income(offer.slice(:user_id, :task_id)) %></li>
         <li>Introduction: <%= offer.introduction %></li>
       </ul>

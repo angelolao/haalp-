@@ -5,3 +5,11 @@
   <li>categories: <%= @user.category_ids %> </li>
   <li>rating: <%= @user.rating %> </li>
 </ul>
+
+<ul>
+  <% @comments.each do |comment| %>
+    <div> Poster Name: <%= comment.poster.name  %></div>
+    <div> Rate: <%= ("&nbsp;&nbsp*&nbsp;&nbsp;" * comment.rating).html_safe %> </div>
+    <div> Note: <%= comment.note %> </div>
+  <% end %>
+</ul>
