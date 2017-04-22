@@ -21,7 +21,6 @@
   padding: 30px;
 
   h2 {
-    color: #6d6d6d;
     font-size: 50px;
     font-weight: bold;
     text-align: center;
@@ -77,6 +76,15 @@
       background-color: #06a5da;
       color: #fff;
     }
+  }
+}
+
+.test-show-right-price {
+  color: #2ecc71;
+
+  span {
+    color: #6d6d6d;
+    font-size: 16px;
   }
 }
 
@@ -157,6 +165,7 @@
   .btn-accept {
     border-radius: 0;
     color: #fff;
+    margin-top: 22px;
   }
 
   .btn-decline {
