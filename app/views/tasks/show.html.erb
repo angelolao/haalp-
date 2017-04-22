@@ -23,10 +23,10 @@
           <div class="col-md-4 task-show-right">
             <div class="task-show-right-inner text-center">
               <% if current_user.poster? %>
-                <h2 class="test-show-right-price">₱<%= poster_price(@task) %><span>/person</span></h2>
+                <h2 class="test-show-right-price"><%= poster_price(@task) %><span>/person</span></h2>
               <% else %>
                 <% price, commission = worker_price(@task) %>
-                <h2 class="test-show-right-price">₱<%= price %><span>/person</span></h2>
+                <h2 class="test-show-right-price"><%= display_price(price) %><span>/person</span></h2>
                 <h5>deduction: ₱<%= commission %></h5>
               <% end %>
               <% if @task.status == "assigned" %>

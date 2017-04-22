@@ -10,7 +10,7 @@ module ApplicationHelper
   end
 
   def poster_price(task)
-    task.price.to_f / divident_price(task)
+    display_price(task.price.to_f / divident_price(task))
   end
 
   def divident_price(task)
@@ -20,5 +20,10 @@ module ApplicationHelper
     else
       no_hired
     end
+  end
+
+  def display_price(price)
+    return "--" unless price
+    "₱#{sprintf('%.2f', price)}"
   end
 end

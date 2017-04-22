@@ -21,14 +21,14 @@
 
     <div class="form-group category-group text-left">
       <span>Categories:</span>
-      <div class="checkbox-inline">
-        <% Category.select(:id, :title).each do |c| %>
+      <% Category.select(:id, :title).each do |c| %>
+        <div class="checkbox-inline">
           <label>
             <%= f.check_box :category_ids, { multiple: true }, c.id, nil %>
             <%= c.title  %>
           </label>
-        <% end %>
-      </div>
+        </div>
+      <% end %>
     </div>
 
 
