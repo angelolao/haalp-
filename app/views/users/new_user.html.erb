@@ -1,50 +1,54 @@
-<div class="container fb-container" id="contents_submenu">
-  <div class="row-fluid" align="center">
-    <div class="span8 offset2 well register-form-border">
-      <h4>We need additional information to finish your registration</h4>
-      <hr />
-      <%= simple_form_for @user, url: create_user_users_path(@user), method: :post do |f| %>
-        <%= f.hidden_field :uid %>
-        <%= render "shared/display_error", error: f.object.errors.messages if f.object.errors.messages.present?  %>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="dashboard-card">
+        <div class="dashboard-card-header">
+          <h5>We need additional information to finish your registration</h5>
+        </div>
+          <%= simple_form_for @user, url: create_user_users_path(@user), method: :post do |f| %>
+            <%= f.hidden_field :uid %>
+            <%= render "shared/display_error", error: f.object.errors.messages if f.object.errors.messages.present?  %>
 
-        <%= image_tag session[:facebook]["image"], class: "img-circle", width: "85px" %>
-        <div class="form-group">
-          <div class="input-prepend">
-            <span class="add-on"><i class="fa fa-envelope"></i></span>
-            <%= f.text_field :email, readonly: true  %>
-          </div>
-        </div>
-        <div class="form-group">
-          <div class="input-prepend">
-            <span class="add-on"><i class="fa fa-user"></i></span>
-            <%= f.text_field :name, readonly: true  %>
-          </div>
-        </div>
-        <div class="form-group">
-          <div class="input-prepend">
-            <span class="add-on"><i class="fa fa-skype"></i></span>
-            <%= f.text_field :skype, placeholder: "Skype Account", autofocus: true %>
-          </div>
-        </div>
+            <%= image_tag session[:facebook]["image"], class: "img-circle", width: "85px" %>
 
-        <div class="form-group">
-          <div class="input-group">
-            <div class="input-group-addon"><i class="fa fa-globe"></i></div>
-            <%= f.input_field :location, collection: %w(taguig makati masbate), autofocus: true, class: "form-control" %>
-          </div>
-        </div>
+            <div class="form-group">
+              <div class="input-prepend">
+                <span class="add-on"><i class="fa fa-envelope"></i></span>
+                <%= f.text_field :email, class: "form-control", readonly: true  %>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="input-prepend">
+                <span class="add-on"><i class="fa fa-user"></i></span>
+                <%= f.text_field :name, class: "form-control", readonly: true  %>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="input-prepend">
+                <span class="add-on"><i class="fa fa-skype"></i></span>
+                <%= f.text_field :skype, placeholder: "Skype Account", class: "form-control", autofocus: true %>
+              </div>
+            </div>
 
-        <div class="form-group">
-          <div class="input-prepend">
-            <span class="add-on"><i class="fa fa-skype"></i></span>
-            <%= f.input :user_type, as: :radio_buttons, collection: %w(poster worker) %>
-          </div>
-        </div>
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-addon"><i class="fa fa-globe"></i></div>
+                <%= f.input_field :location, collection: %w(taguig makati masbate), autofocus: true, class: "form-control" %>
+              </div>
+            </div>
 
-        <%= button_tag(type: "submit", class: "btn btn-danger btn-large", data: { disable_with: "Register" }, style: "width:265px;") do %>
-          Register
-        <% end %>
-      <%end %>
+            <div class="form-group">
+              <div class="input-prepend">
+                <span class="add-on"><i class="fa fa-skype"></i></span>
+                <%= f.input :user_type, as: :radio_buttons, collection: %w(poster worker) %>
+              </div>
+            </div>
+
+            <%= button_tag(type: "submit", class: "btn btn-danger btn-large", data: { disable_with: "Register" }) do %>
+              Register
+            <% end %>
+          <%end %>
+      </div>
     </div>
-  </div><!-- row-fluid -->
+  </div>
 </div>
