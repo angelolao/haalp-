@@ -12,6 +12,8 @@ class Task < ApplicationRecord
     ["Others", 7]
   ]
 
+  COMMISSION = 0.005
+
   COMPLETED = "completed".freeze
 
   scope :scoped, -> { order("created_at DESC") }

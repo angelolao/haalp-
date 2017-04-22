@@ -4,7 +4,7 @@
   <p>
   Insert some awesome descriptions here.
   </p>
-  <%= form_for(:task, url: url, method: submit_action.to_sym) do |f| %>
+  <%= simple_form_for :task, url: url, method: submit_action.to_sym do |f| %>
     <%= f.hidden_field :user_id, value: current_user.id %>
 
     <div class="form-group">
@@ -16,15 +16,11 @@
     </div>
 
     <div class="form-group">
-      <%= f.text_field :due_date, class: "form-control", placeholder: "Due Date" %>
-    </div>
-
-    <div class="form-group">
       <%= f.text_field :location, class: "form-control", placeholder: "Location" %>
     </div>
 
     <div class="form-group category-group text-left">
-      <span>Category Ids:</span>
+      <span>Categories:</span>
       <div class="checkbox-inline">
         <% Category.select(:id, :title).each do |c| %>
           <label>
@@ -35,12 +31,13 @@
       </div>
     </div>
 
+
     <div class="form-group">
       <%= f.text_field :price, class: "form-control", placeholder: "Price" %>
     </div>
 
     <div class="form-group">
-      <%= f.text_field :worker_number, class: "form-control", placeholder: "Worker Limit" %>
+      <%= f.text_field :worker_number, class: "form-control", placeholder: "No of worker(s)" %>
     </div>
 
   <button data-remodal-action="cancel" class="remodal-cancel">Cancel</button>
