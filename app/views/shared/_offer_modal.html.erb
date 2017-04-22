@@ -7,6 +7,7 @@
   <%= form_for(:offer, url: offers_path, method: :post) do |f| %>
     <%= f.hidden_field :user_id, value: current_user.id  %>
     <%= f.hidden_field :task_id, value: id  %>
+    <%= f.hidden_field :make_offer, value: true %>
     Introduction: <%= f.text_area :introduction %><br />
   <br>
   <button data-remodal-action="cancel" class="remodal-cancel">Cancel</button>

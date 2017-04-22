@@ -19,13 +19,12 @@ class Task < ApplicationRecord
   scope :completed, -> { where(status: COMPLETED) }
 
   class << self
-
     def search(args)
       if args.blank? then scoped
       else
-        self.by_category(args[:category])
-            .by_location(args[:location])
-            .by_text(args[:text])
+        by_category(args[:category])
+          .by_location(args[:location])
+          .by_text(args[:text])
       end
     end
 
