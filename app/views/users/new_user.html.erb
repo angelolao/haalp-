@@ -30,14 +30,14 @@
         <div class="form-group">
           <div class="input-group">
             <div class="input-group-addon"><i class="fa fa-globe"></i></div>
-            <%= f.input_field :location, collection: %w(poster worker), autofocus: true, class: "form-control" %>
+            <%= f.input_field :location, collection: %w(taguig makati masbate), autofocus: true, class: "form-control" %>
           </div>
         </div>
 
         <div class="form-group">
           <div class="input-prepend">
             <span class="add-on"><i class="fa fa-skype"></i></span>
-            <%= f.input :user_type, as: :radio_buttons, collection: User::TYPES %>
+            <%= f.input :user_type, as: :radio_buttons, collection: %w(poster worker) %>
           </div>
         </div>
 
