@@ -28,3 +28,23 @@ ul.user-profile-list {
     }
   }
 }
+
+.user-profile-comment {
+  background-color: #f8f8f8;
+  color: #595959;
+  list-style: none;
+  padding: 25px;
+
+  li {
+    margin-bottom: 8px;
+
+    strong {
+      display: inline-block;
+      width: 15%;
+    }
+  }
+
+  &-title {
+    margin-top: 60px;
+  }
+}

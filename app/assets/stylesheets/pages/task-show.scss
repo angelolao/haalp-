@@ -102,6 +102,14 @@
       display: block;
       margin-bottom: 5px;
     }
+
+    a {
+      color: #7d7d7d;
+
+      &:hover {
+        color: #22bcf0;
+      }
+    }
   }
 }
 
@@ -196,10 +204,11 @@
   padding: 7px 15px;
 
   a {
-    color: #6d6d6d;
+    color: #e74c3c;
+    font-weight: bold;
 
     &:hover {
-      color: #22bcf0;
+      color: #d74030;
     }
   }
 }

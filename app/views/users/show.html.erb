@@ -21,17 +21,17 @@
               <li><strong>Categories:</strong> <%= @user.category_ids %> </li>
               <li><strong>Rating:</strong> <%= @user.rating %> </li>
             </ul>
+            <h4 class="user-profile-comment-title">Comments</h4>
+            <ul class="user-profile-comment">
+              <% @comments.each do |comment| %>
+                <li><strong>Poster Name:</srong> <%= comment.poster.name  %></li>
+                <li><strong>Rate:</strong> <%= ("&nbsp;&nbsp*&nbsp;&nbsp;" * comment.rating).html_safe %> </li>
+                <li><strong>Note:</strong> <%= comment.note %> </li>
+              <% end %>
+            </ul>
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-
-<ul>
-  <% @comments.each do |comment| %>
-    <div> Poster Name: <%= comment.poster.name  %></div>
-    <div> Rate: <%= ("&nbsp;&nbsp*&nbsp;&nbsp;" * comment.rating).html_safe %> </div>
-    <div> Note: <%= comment.note %> </div>
-  <% end %>
-</ul>
