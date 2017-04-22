@@ -28,17 +28,17 @@ class Task < ApplicationRecord
         by_category(args[:category])
           .by_location(args[:location])
           .by_text(args[:text])
-      end
+      end.not_completed
     end
 
     def by_category(category)
       return scoped if category.blank?
-      where("category_ids LIKE ?", category)
+      where("category_ids LIKE ?", "%#{category}")
     end
 
     def by_location(location)
       return scoped if location.blank?
-      where("location LIKE ?", location)
+      where("location LIKE ?", "%#{location}%")
     end
 
     def by_text(text)
