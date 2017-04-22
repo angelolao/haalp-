@@ -10,6 +10,7 @@ Offers:
       <% if offer.status.blank? %>
         <%= simple_form_for :offer, url: aktion_task_offers_path(offer.task_id), method: :put do |f| %>
           <%= f.hidden_field :id, value: offer.id %>
+
           <%= f.submit "Decline", class: "btn btn-warning" %>
           <%= f.submit "Accept", class: "btn btn-primary" %>
         <% end %>

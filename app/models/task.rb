@@ -17,15 +17,15 @@ class Task < ApplicationRecord
   scope :scoped, -> { order("created_at DESC") }
   scope :by_user, ->(id) { where(user_id: id) }
   scope :completed, -> { where(status: COMPLETED) }
+  scope :not_completed, -> { where.not(status: COMPLETED) }
 
   class << self
-
     def search(args)
       if args.blank? then scoped
       else
-        self.by_category(args[:category])
-            .by_location(args[:location])
-            .by_text(args[:text])
+        by_category(args[:category])
+          .by_location(args[:location])
+          .by_text(args[:text])
       end
     end
 
@@ -43,6 +43,5 @@ class Task < ApplicationRecord
       return scoped if text.blank?
       where("title LIKE :text", text: "%#{text}%")
     end
-
   end
 end

@@ -24,12 +24,34 @@
               <% if @task.status == "assigned" %>
                 <%= link_to "Task finished", complete_task_path(id: @task.id), method: :patch, class: "btn btn-done" %>
               <% end %>
-              <% if current_user.worker? %>
-                <button data-remodal-target="offer_modal" type="button" class="btn">Make an Offer</button>
-                <br />
-                <%= link_to "Cancel Offer", task_offer_path(@task), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-warning" %>
+
+              <% offer = Offer.offer(user_id: current_user.id, task_id: @task.id) %>
+              <% if current_user.worker? && offer.try(:status).blank? %>
+                <% if offer.try(:make_offer) %>
+                  <%= link_to "Cancel Offer", task_offer_path(@task, offer), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-warning" %>
+                <% else %>
+                  <button data-remodal-target="offer_modal" type="button" class="btn">Make an Offer</button>
+                <% end %>
               <% elsif @task.user_id == current_user.id %>
                 <%= link_to "Offer(s)", task_offers_path(@task), class: "btn" %>
+                <% if @task.status == "completed" %>
+                  <%= form_for :comment, url: comments_path do |c| %>
+                    <%= c.hidden_field :task_id, value: @task.id %>
+                    <%= c.hidden_field :user_id, value: @offers.first.try(:id) %>
+                    <%= c.hidden_field :poster_user_id, value: current_user.id %>
+                    <p>
+                      <%= c.label :rating %>
+                      <%= c.number_field :rating, class: "form-control" %>
+                    </p>
+                    <p>
+                      <%= c.label :note %>
+                      <%= c.text_field :note, class: "form-control" %>
+                    </p>
+                    <p>
+                      <%= c.submit "Send" %>
+                    </p>
+                  <% end %>
+                <% end %>
               <% end %>
             </div>
             <ul class="task-show-list">

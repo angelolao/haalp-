@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170421211705) do
+ActiveRecord::Schema.define(version: 20170421231629) do
 
   create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "title",       null: false
@@ -20,21 +20,23 @@ ActiveRecord::Schema.define(version: 20170421211705) do
   end
 
   create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "task_id",        null: false
-    t.integer  "user_id",        null: false
-    t.integer  "poster_user_id", null: false
-    t.integer  "rating",         null: false
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.integer  "task_id",                      null: false
+    t.integer  "user_id",                      null: false
+    t.integer  "poster_user_id",               null: false
+    t.integer  "rating",                       null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.text     "note",           limit: 65535
   end
 
   create_table "offers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "user_id",                    null: false
-    t.integer  "task_id",                    null: false
+    t.integer  "user_id",                                    null: false
+    t.integer  "task_id",                                    null: false
     t.text     "introduction", limit: 65535
     t.string   "status"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.boolean  "make_offer",                 default: false
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
   end
 
   create_table "tasks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
