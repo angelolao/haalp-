@@ -34,6 +34,7 @@
               <% end %>
 
               <% offer = Offer.offer(user_id: current_user.id, task_id: @task.id) %>
+
               <% if current_user.worker? && offer.try(:status).blank? %>
                 <% if offer.try(:make_offer) %>
                   <%= link_to "Cancel Offer", task_offer_path(@task, offer), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-cancel-offer" %>
