@@ -132,6 +132,15 @@ body {
   width: 140px;
 }
 
+.text-container
+
+.banner-mobile {
+  position: absolute;
+  top: -34%;
+  width: 280px;
+  right: 20%;
+}
+
 @media only screen and (min-width: 641px) {
   .remodal-wrapper .modal-post-task {
     max-width: 500px;
