@@ -4,22 +4,41 @@
   <p>
   Insert some awesome descriptions here.
   </p>
-  <%= form_for(:task, url: url, method: submit_action.to_sym) do |f| %>
+  <%= simple_form_for :task, url: url, method: submit_action.to_sym do |f| %>
     <%= f.hidden_field :user_id, value: current_user.id %>
-    Titles: <%= f.text_field :title %><br />
-    Description : <%= f.text_area :description %><br />
-    Due Date    : <%= f.text_field :due_date %><br />
-    Location    : <%= f.text_field :location %><br />
-    Category Ids:
-    <% Category.select(:id, :title).each do |c| %>
-      <%= f.check_box :category_ids, { multiple: true }, c.id, nil %>
-      <label><%= c.title  %></label><br />
-    <% end %>
-    Price:        <%= f.text_field :price %><br />
-    Worker Limit:        <%= f.text_field :worker_number %><br />
-  <br>
-  <button data-remodal-action="cancel" class="remodal-cancel">Cancel</button>
-  <%= submit_tag "Submit Task!", class: "remodal-confirm" %>
+
+    <table>
+      <tr>
+        <th>Title</th>
+        <td><%= f.input_field :title %></td>
+      </tr>
+      <tr>
+        <th>Description</th>
+        <td><%= f.text_area :description %></td>
+      </tr>
+      <tr>
+        <th>Location</th>
+        <td><%= f.input_field :location %></td>
+      </tr>
+      <tr>
+        <th>Category</th>
+        <td><%= f.input :category_ids, as: :check_boxes, collection: Category.select(:id, :title), label: false %></td>
+      </tr>
+      <tr>
+        <th>Price</th>
+        <td><%= f.text_field :price %></td>
+      </tr>
+      <tr>
+        <th>Order Limit</th>
+        <td><%= f.text_field :worker_number %></td>
+      </tr>
+      <tr>
+        <td colspan="2">
+        <button data-remodal-action="cancel" class="remodal-cancel">Cancel</button>
+        <%= submit_tag "Submit Task!", class: "remodal-confirm" %>
+        </td>
+      </tr>
+    </table>
   <% end %>
 </div>
 

@@ -20,7 +20,13 @@
           </div><!-- left -->
           <div class="col-md-4 task-show-right">
             <div class="task-show-right-inner text-center">
-              <h2>₱<%= @task.price %></h2>
+              <% if current_user.poster? %>
+                <h2>₱<%= @task.price.to_f / Offer.no_hired(task_id: @task.id) %>/person</h2>
+              <% else %>
+                <% price, commission = worker_price(@task) %>
+                <h2>₱<%= price %>/person</h2>
+                <h5>deduction: ₱<%= commission %></h5>
+              <% end %>
               <% if @task.status == "assigned" %>
                 <%= link_to "Task finished", complete_task_path(id: @task.id), method: :patch, class: "btn btn-done" %>
               <% end %>
@@ -33,22 +39,21 @@
                   <button data-remodal-target="offer_modal" type="button" class="btn">Make an Offer</button>
                 <% end %>
               <% elsif @task.user_id == current_user.id %>
-                <%= link_to "Offer(s)", task_offers_path(@task), class: "btn" %>
-                <% if @task.status == "completed" %>
-                  <%= form_for :comment, url: comments_path do |c| %>
+                <% if @task.status == "completed" && Offer.accepted_offer?(task_id: @task.id) %>
+                  <%= simple_form_for :comment, url: comments_path do |c| %>
                     <%= c.hidden_field :task_id, value: @task.id %>
                     <%= c.hidden_field :user_id, value: @offers.first.try(:id) %>
                     <%= c.hidden_field :poster_user_id, value: current_user.id %>
                     <p>
                       <%= c.label :rating %>
-                      <%= c.number_field :rating, class: "form-control" %>
+                      <%= c.input :rating, as: :radio_buttons, collection: (1..5), class: "form-control", label: false %>
                     </p>
                     <p>
                       <%= c.label :note %>
                       <%= c.text_field :note, class: "form-control" %>
                     </p>
                     <p>
-                      <%= c.submit "Send" %>
+                      <%= c.submit "Send", class: "btn btn-primary" %>
                     </p>
                   <% end %>
                 <% end %>

@@ -1,7 +1,10 @@
-<%= link_to "finishing hiring", close_hiring_path(id: params[:task_id]), method: :patch %>
-<br>
-Offers:
+<% if current_user.id == params[:id] %>
+  <%= link_to "finishing hiring", close_hiring_path(id: params[:id]), method: :patch, class: "btn btn-primary" %>
+<% end %>
 
+<br>
+
+<%= "Offer(s)" if @offers.count > 0  %>
 <% @offers.each do |offer| %>
   <% user = offer.user %>
   <ul>
@@ -19,7 +22,7 @@ Offers:
       <% end %>
     </li>
     <li>Name: <%= "#{user.name} (#{user.email})" %></li>
-    <li>Price: <%= offer.task.price %></li>
+    <li>Price: <%= Income.worker_income(offer.slice(:user_id, :task_id)) %></li>
     <li>Introduction: <%= offer.introduction %></li>
   </ul>
 <% end %>

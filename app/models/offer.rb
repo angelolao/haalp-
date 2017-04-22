@@ -14,6 +14,10 @@ class Offer < ApplicationRecord
     where(make_offer: make_offer) if make_offer.present?
   }
 
+  scope :by_status, -> status {
+    where(status: status) if status.present?
+  }
+
   scope :recent_order, -> { order("offers.created_at DESC") }
 
   class << self
@@ -21,7 +25,16 @@ class Offer < ApplicationRecord
       by_task_id(args[:task_id])
         .by_user_id(args[:user_id])
         .by_make_offer(args[:make_offer])
+        .by_status(args[:status])
         .recent_order
+    end
+
+    def accepted_offer?(args)
+      search(args.merge(status: "accepted")).present?
+    end
+
+    def no_hired(args)
+      search(args.merge(status: "accepted")).count
     end
 
     def offer(args)
