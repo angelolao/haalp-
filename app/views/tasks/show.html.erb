@@ -41,7 +41,7 @@
                 <% else %>
                   <% if @task.worker_number - Offer.no_hired(task_id: @task.id) > 0 %>
                     <button data-remodal-target="offer_modal" type="button" class="btn">Make an Offer</button>
-                  <% else %>
+                  <% elsif @task.status != "assigned" %>
                     <button data-remodal-target="offer_modal" type="button" class="btn btn-danger" disabled="true">Full</button>
                   <% end %>
                 <% end %>
