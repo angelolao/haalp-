@@ -53,13 +53,15 @@
               </div>
             <% end %>
 
-            <div class="money-holder">
-              <ul>
-                <li>Funds</li>
-                <li class="money-holder-number"><%= current_user.money %></li>
-              </ul>
-              <%= link_to "add funds", mock_payment_path %>
-            </div>
+            <% if current_user.poster? %>
+              <div class="money-holder">
+                <ul>
+                  <li>Funds</li>
+                  <li class="money-holder-number"><%= current_user.money %></li>
+                </ul>
+                <%= link_to "add funds", mock_payment_path %>
+              </div>
+            <% end %>
           </div>
         </div>
       </div>
