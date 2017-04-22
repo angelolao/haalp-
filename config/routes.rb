@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   get 'corporate', to: 'pages#corporate'
 
   resources :categories
+  resources :comments, only: [:create, :show]
   resources :offers
   resources :tasks do
     resources :offers, only: [:index, :destroy] do
