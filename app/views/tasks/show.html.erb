@@ -39,7 +39,11 @@
                 <% if offer.try(:make_offer) %>
                   <%= link_to "Cancel Offer", task_offer_path(@task, offer), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-cancel-offer" %>
                 <% else %>
-                  <button data-remodal-target="offer_modal" type="button" class="btn">Make an Offer</button>
+                  <% if @task.worker_number - Offer.no_hired(task_id: @task.id) > 0 %>
+                    <button data-remodal-target="offer_modal" type="button" class="btn">Make an Offer</button>
+                  <% else %>
+                    <button data-remodal-target="offer_modal" type="button" class="btn btn-danger" disabled="true">Full</button>
+                  <% end %>
                 <% end %>
               <% elsif @task.user_id == current_user.id %>
                 <% if @task.status == "completed" && Offer.accepted_offer?(task_id: @task.id) %>
@@ -71,6 +75,9 @@
               <li>
                 <strong>DUE DATE:</strong> <%= @task.due_date.to_datetime.strftime("%F") %>
               </li>
+              <li>
+                <strong> (<%= @task.worker_number - Offer.no_hired(task_id: @task.id) %>) slots available for this job</strong>
+              </li
             </ul>
           </div><!-- right -->
         <div>
