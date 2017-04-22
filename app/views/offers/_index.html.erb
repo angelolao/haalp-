@@ -2,11 +2,7 @@
   <%= link_to "finishing hiring", close_hiring_path(id: params[:id]), method: :patch, class: "btn btn-primary" %>
 <% end %>
 
-<br>
-
-<h3>Offers:</h3>
-
-<%= "Offer(s)" if @offers.count > 0  %>
+<h3><%= "Offer(s)" if @offers.count > 0  %></h3>
 <% @offers.each do |offer| %>
   <% user = offer.user %>
   <div class="offers-list-entry">
@@ -16,7 +12,7 @@
     <div class="col-md-7">
       <ul>
         <li class="offers-list-name"><%= link_to "#{user.name} (#{user.email})", user_path(user) %></li>
-        <li class="offers-list-price"><i class="fa fa-money"></i>₱<%= offer.task.price %></li>
+        <li class="offers-list-price"><i class="fa fa-money"></i>₱<%= Income.worker_income(offer.slice(:user_id, :task_id)) %></li>
         <li class="offers-list-intro"><%= offer.introduction %></li>
       </ul>
     </div>
@@ -33,8 +29,6 @@
             <div><%= offer.status.upcase %></div>
           <% end %>
         </li>
-        <li>Price: <%= Income.worker_income(offer.slice(:user_id, :task_id)) %></li>
-        <li>Introduction: <%= offer.introduction %></li>
       </ul>
     </div>
   </div>
