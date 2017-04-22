@@ -18,7 +18,7 @@
             </div>
             <ul class="user-profile-list">
               <li><strong>Contact:</strong> <%= @user.contact %> </li>
-              <li><strong>Categories:</strong> <%= @user.category_ids %> </li>
+              <li><strong>Categories:</strong> <%= @user.category_ids || "none" %> </li>
               <li><strong>Rating:</strong> <%= @user.rating %> </li>
             </ul>
             <h4 class="user-profile-comment-title">Comments</h4>
