@@ -3,6 +3,7 @@ class OffersController < ApplicationController
 
   def create
     @offer = Offer.search(params[:offer]).first
+
     if @offer
       @offer.update_attribute(:make_offer, true)
       redirect_to task_path(@offer.task_id)
@@ -32,6 +33,7 @@ class OffersController < ApplicationController
   end
 
   def permit_parameters
-    params.require(:offer).permit(:user_id, :task_id, :introduction)
+    params[:offer][:make_offer] = true
+    params.require(:offer).permit(:user_id, :task_id, :introduction, :make_offer)
   end
 end
