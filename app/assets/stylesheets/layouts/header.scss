@@ -66,6 +66,7 @@
   line-height: normal;
   padding: 30px;
   text-transform: uppercase;
+  transition: color .4s;
 
   &:hover, &:focus {
     background-color: transparent;
