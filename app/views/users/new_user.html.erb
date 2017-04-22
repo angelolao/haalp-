@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-4 center-block">
       <div class="dashboard-card">
         <div class="dashboard-card-header">
           <h5>We need additional information to finish your registration</h5>
@@ -9,23 +9,23 @@
             <%= f.hidden_field :uid %>
             <%= render "shared/display_error", error: f.object.errors.messages if f.object.errors.messages.present?  %>
 
-            <%= image_tag session[:facebook]["image"], class: "img-circle", width: "85px" %>
+            <%= image_tag session[:facebook]["image"], class: "img-circle center-block image-facebook", width: "85px" %>
 
             <div class="form-group">
-              <div class="input-prepend">
-                <span class="add-on"><i class="fa fa-envelope"></i></span>
+              <div class="input-group">
+                <div class="input-group-addon"><i class="fa fa-envelope"></i></div>
                 <%= f.text_field :email, class: "form-control", readonly: true  %>
               </div>
             </div>
             <div class="form-group">
-              <div class="input-prepend">
-                <span class="add-on"><i class="fa fa-user"></i></span>
+              <div class="input-group">
+                <div class="input-group-addon"><i class="fa fa-user"></i></div>
                 <%= f.text_field :name, class: "form-control", readonly: true  %>
               </div>
             </div>
             <div class="form-group">
-              <div class="input-prepend">
-                <span class="add-on"><i class="fa fa-skype"></i></span>
+              <div class="input-group">
+                <div class="input-group-addon"><i class="fa fa-skype"></i></div>
                 <%= f.text_field :skype, placeholder: "Skype Account", class: "form-control", autofocus: true %>
               </div>
             </div>
@@ -38,10 +38,17 @@
             </div>
 
             <div class="form-group">
-              <div class="input-prepend">
-                <span class="add-on"><i class="fa fa-skype"></i></span>
+              <div class="input-group">
                 <%= f.input :user_type, as: :radio_buttons, collection: %w(poster worker) %>
               </div>
+            </div>
+
+            <div id="worker_categories" style="display:none">
+              Category Ids:<br/>
+              <% Category.select(:id, :title).each do |c| %>
+                <%= f.check_box :category_ids, { multiple: true }, c.id, nil %>
+                <label><%= c.title  %></label><br />
+              <% end %>
             </div>
 
             <%= button_tag(type: "submit", class: "btn btn-danger btn-large", data: { disable_with: "Register" }) do %>
@@ -52,3 +59,7 @@
     </div>
   </div>
 </div>
+
+<% content_for :extra_javascripts do %>
+  <%= javascript_include_tag "sign_up" %>
+<% end %>
