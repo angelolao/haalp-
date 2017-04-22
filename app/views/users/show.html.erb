@@ -23,13 +23,13 @@
             </ul>
             <h4 class="user-profile-comment-title">Comments</h4>
             <div class="user-profile-comment-wrap">
-              <ul class="user-profile-comment">
-                <% @comments.each do |comment| %>
+              <% @comments.each do |comment| %>
+                <ul class="user-profile-comment">
                   <li><strong>Poster Name:</srong> <%= comment.poster.name  %></li>
                   <li><strong>Rate:</strong> <%= ("&nbsp;&nbsp*&nbsp;&nbsp;" * comment.rating).html_safe %> </li>
                   <li><strong>Note:</strong> <%= comment.note %> </li>
-                <% end %>
-              </ul>
+                </ul>
+              <% end %>
             </div>
           </div>
         </div>
