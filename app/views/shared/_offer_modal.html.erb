@@ -8,7 +8,10 @@
     <%= f.hidden_field :user_id, value: current_user.id  %>
     <%= f.hidden_field :task_id, value: id  %>
     <%= f.hidden_field :make_offer, value: true %>
-    Introduction: <%= f.text_area :introduction %><br />
+    <div class="form-group">
+      <label for="recipient-name" class="control-label pull-left">Introduction:</label>
+      <%= f.text_area :introduction, class: "form-control" %><br />
+    </div>
   <br>
   <button data-remodal-action="cancel" class="remodal-cancel">Cancel</button>
   <%= submit_tag "Submit Offer!", class: "remodal-confirm" %>
