@@ -41,7 +41,6 @@
                   <button data-remodal-target="offer_modal" type="button" class="btn">Make an Offer</button>
                 <% end %>
               <% elsif @task.user_id == current_user.id %>
-                <%= link_to "Offer(s)", task_offers_path(@task), class: "btn" %>
                 <% if @task.status == "completed" && Offer.accepted_offer?(task_id: @task.id) %>
                   <div class="rating-holder">
                     <%= simple_form_for :comment, url: comments_path do |c| %>
