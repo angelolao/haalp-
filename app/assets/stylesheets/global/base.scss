@@ -95,3 +95,32 @@ body {
     color: #fff;
   }
 }
+
+.remodal-wrapper .modal-post-task .form-control {
+  height: 40px;
+}
+
+.remodal-wrapper .modal-post-task .form-control-desc {
+  height: 100px;
+}
+
+.category-group {
+  border: 1px solid #e6e6e6;
+  padding: 6px 12px;
+
+  label {
+    font-weight: normal;
+  }
+}
+
+.category-group > span {
+  color: #9d9d9d;
+  display: block;
+  margin-bottom: 5px;
+}
+
+@media only screen and (min-width: 641px) {
+  .remodal-wrapper .modal-post-task {
+    max-width: 500px;
+  }
+}
