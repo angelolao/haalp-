@@ -51,6 +51,33 @@
       }
     }
   }
+
+  .btn-cancel-offer {
+    background-color: #e74c3c;
+
+    &:hover,
+    &:focus {
+      background-color: #d63f2f;
+    }
+  }
+
+  .btn-rating-submit {
+    background-color: #1ebbf0;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    color: #fff;
+    font-size: 14px;
+    padding: 8px 28px;
+    transition: background-color 0.3s;
+    width: auto;
+
+    &:hover,
+    &:focus {
+      background-color: #06a5da;
+      color: #fff;
+    }
+  }
 }
 
 .task-show-list {
@@ -66,6 +93,91 @@
       color: #414141;
       display: block;
       margin-bottom: 5px;
+    }
+  }
+}
+
+.rating-holder {
+  border-top: 1px solid #e1e6ef;
+  margin-top: 30px;
+  padding-top: 30px;
+  text-align: left;
+}
+
+.task-show-desc {
+  border-bottom: 1px solid #e1e6ef;
+  min-height: 150px;
+}
+
+.offers-list {
+  ul {
+    list-style: none;
+    padding: 0;
+
+    li {
+      margin-bottom: 2px;
+
+      > i {
+        margin-right: 8px;
+      }
+    }
+  }
+
+  img {
+    width: 70px;
+  }
+
+  &-entry {
+    border-bottom: 1px dashed #e1e6ef;
+    overflow: hidden;
+    padding: 10px;
+
+    &:nth-child(odd) {
+      background-color: #f9f9f9;
+    }
+  }
+
+  &-name {
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  &-price {
+    color: #2ecc71;
+    font-weight: bold;
+    font-size: 16px;
+  }
+
+  &-intro {
+    color: #888;
+    margin-top: 14px;
+  }
+
+  .btn-decline,
+  .btn-accept {
+    border-radius: 0;
+    color: #fff;
+  }
+
+  .btn-decline {
+    background-color: #e74c3c;
+    margin-right: 12px;
+  }
+
+  .btn-accept {
+    background-color: #2ecc71;
+  }
+}
+
+.end-wrap {
+  background: #f8f8f8;
+  padding: 7px 15px;
+
+  a {
+    color: #6d6d6d;
+
+    &:hover {
+      color: #22bcf0;
     }
   }
 }

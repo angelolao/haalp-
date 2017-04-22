@@ -12,10 +12,12 @@
           <div class="col-md-8">
             <div class="dashboard-card-header">
               <h1><%= @task.title %></h1>
-              <h2 class="task-show-posted-by"><i class="fa fa-user"></i> <%= link_to @task.user.name, "#" %></h2>
             </div>
             <div class="task-show-desc">
               <p><%= @task.description %></p>
+            </div>
+            <div class="offers-list">
+              <%= render partial: "offers/index" if @task.user_id == current_user.id %>
             </div>
           </div><!-- left -->
           <div class="col-md-4 task-show-right">
@@ -35,26 +37,29 @@
               <% elsif @task.user_id == current_user.id %>
                 <%= link_to "Offer(s)", task_offers_path(@task), class: "btn" %>
                 <% if @task.status == "completed" %>
-                  <%= form_for :comment, url: comments_path do |c| %>
-                    <%= c.hidden_field :task_id, value: @task.id %>
-                    <%= c.hidden_field :user_id, value: @offers.first.try(:id) %>
-                    <%= c.hidden_field :poster_user_id, value: current_user.id %>
-                    <p>
-                      <%= c.label :rating %>
-                      <%= c.number_field :rating, class: "form-control" %>
-                    </p>
-                    <p>
-                      <%= c.label :note %>
-                      <%= c.text_field :note, class: "form-control" %>
-                    </p>
-                    <p>
-                      <%= c.submit "Send" %>
-                    </p>
-                  <% end %>
+                  <div class="rating-holder">
+                    <%= form_for :comment, url: comments_path do |c| %>
+                      <%= c.hidden_field :task_id, value: @task.id %>
+                      <%= c.hidden_field :user_id, value: @offers.first.try(:id) %>
+                      <%= c.hidden_field :poster_user_id, value: current_user.id %>
+
+                      <div class="form-group">
+                        <%= c.number_field :rating, class: "form-control", placeholder: "Rating" %>
+                      </div>
+                      <div class="form-group">
+                        <%= c.text_field :note, class: "form-control", placeholder: "Note" %>
+                      </div>
+                      <%= c.submit "Submit", class: "btn btn-rating-submit" %>
+                    <% end %>
+                  </div>
                 <% end %>
               <% end %>
             </div>
             <ul class="task-show-list">
+              <li>
+                <strong>POSTED BY:</strong>
+                <%= link_to @task.user.name, "#" %>
+              </li>
               <li>
                 <strong>LOCATION:</strong> <%= @task.location %>
               </li>
@@ -66,10 +71,6 @@
         <div>
       </div>
     </div>
-  </div>
-
-  <div>
-    <%= render partial: "offers/index" if @task.user_id == current_user.id %>
   </div>
 </div>
 

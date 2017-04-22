@@ -1,25 +1,31 @@
-<%= link_to "finishing hiring", close_hiring_path(id: params[:task_id]), method: :patch %>
-<br>
-Offers:
+<h3>Offers:</h3>
 
 <% @offers.each do |offer| %>
   <% user = offer.user %>
-  <ul>
-    <li>
-      <%= image_tag "logo-2" %>
+  <div class="offers-list-entry">
+    <figure class="pull-left col-md-2">
+      <%= image_tag "prof-image.png", alt: "" %>
+    </figure>
+    <div class="col-md-7">
+      <ul>
+        <li class="offers-list-name"><%= "#{user.name} (#{user.email})" %></li>
+        <li class="offers-list-price"><i class="fa fa-money"></i>₱<%= offer.task.price %></li>
+        <li class="offers-list-intro"><%= offer.introduction %></li>
+      </ul>
+    </div>
+    <div class="col-md-3">
       <% if offer.status.blank? %>
         <%= simple_form_for :offer, url: aktion_task_offers_path(offer.task_id), method: :put do |f| %>
           <%= f.hidden_field :id, value: offer.id %>
-
-          <%= f.submit "Decline", class: "btn btn-warning" %>
-          <%= f.submit "Accept", class: "btn btn-primary" %>
+          <%= f.submit "Decline", class: "btn btn-decline" %>
+          <%= f.submit "Accept", class: "btn btn-accept" %>
         <% end %>
       <% else %>
         <div><%= offer.status.upcase %></div>
       <% end %>
-    </li>
-    <li>Name: <%= "#{user.name} (#{user.email})" %></li>
-    <li>Price: <%= offer.task.price %></li>
-    <li>Introduction: <%= offer.introduction %></li>
-  </ul>
+    </div>
+  </div>
 <% end %>
+<div class="end-wrap text-right">
+  <%= link_to "End hiring?", close_hiring_path(id: params[:task_id]), method: :patch %>
+</div>
