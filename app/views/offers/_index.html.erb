@@ -36,6 +36,9 @@
   </div>
 
 <% end %>
-<div class="end-wrap text-right">
-  <%= link_to "End hiring?", close_hiring_path(id: params[:id]), method: :patch %>
-</div>
+
+<% if @task.status != "completed" %>
+  <div class="end-wrap text-right">
+    <%= link_to "End hiring?", close_hiring_path(id: params[:id]), method: :patch %>
+  </div>
+<% end %>
