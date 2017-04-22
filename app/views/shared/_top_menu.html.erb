@@ -21,7 +21,7 @@
           <ul class="nav navbar-nav navbar-nav-main navbar-nav-in navbar-right">
             <% if current_user.worker? || current_user.admin? %>
               <% owned = current_user.worker? ? "worker" : "company" %>
-              <li><%= link_to "Income ₱#{Income.my_income(current_user.id, owned)}", "javascript:void(0)" %></li>
+              <li><%= link_to "Income #{display_price(Income.my_income(current_user.id, owned))}", "javascript:void(0)" %></li>
             <% end %>
             <% if current_user.poster? %>
               <li>

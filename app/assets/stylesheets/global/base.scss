@@ -132,13 +132,30 @@ body {
   width: 140px;
 }
 
-.text-container
-
 .banner-mobile {
   position: absolute;
   top: -34%;
   width: 280px;
   right: 20%;
+}
+.rating-radio-holder {
+  .radio {
+    display: inline-block;
+    margin-bottom: 0;
+    margin-right: 18px;
+  }
+}
+
+.label {
+  &-accepted {
+    color: #2ecc71;
+    font-weight: bold;
+  }
+
+  &-decline {
+    color: #e74c3c;
+    font-weight: bold;
+  }
 }
 
 @media only screen and (min-width: 641px) {

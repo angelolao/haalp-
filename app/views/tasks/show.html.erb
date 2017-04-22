@@ -39,7 +39,11 @@
                 <% if offer.try(:make_offer) %>
                   <%= link_to "Cancel Offer", task_offer_path(@task, offer), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-cancel-offer" %>
                 <% else %>
-                  <button data-remodal-target="offer_modal" type="button" class="btn">Make an Offer</button>
+                  <% if @task.worker_number - Offer.no_hired(task_id: @task.id) > 0 %>
+                    <button data-remodal-target="offer_modal" type="button" class="btn">Make an Offer</button>
+                  <% else %>
+                    <button data-remodal-target="offer_modal" type="button" class="btn btn-danger" disabled="true">Full</button>
+                  <% end %>
                 <% end %>
               <% elsif @task.user_id == current_user.id %>
                 <% if @task.status == "completed" && Offer.accepted_offer?(task_id: @task.id) %>
@@ -48,7 +52,7 @@
                       <%= c.hidden_field :task_id, value: @task.id %>
                       <%= c.hidden_field :poster_user_id, value: current_user.id %>
 
-                      <div class="form-group">
+                      <div class="form-group rating-radio-holder">
                         <%= c.input :rating, as: :radio_buttons, collection: (1..5), class: "form-control", label: false %>
                       </div>
                       <div class="form-group">
@@ -61,6 +65,9 @@
               <% end %>
             </div>
             <ul class="task-show-list">
+              <li>
+                <strong>JOB AVAILABILITY:</strong> <%= @task.worker_number - Offer.no_hired(task_id: @task.id) %> slots available for this job</strong>
+              </li>
               <li>
                 <strong>POSTED BY:</strong>
                 <%= link_to @task.user.name, "#" %>
