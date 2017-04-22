@@ -44,7 +44,8 @@
 
               <div class="form-group">
                 <div class="input-group">
-                  <%= f.select :location, User::LOCATIONS, {}, { class: "selectpicker", autofocus: true } %>
+                  <div class="input-group-addon"><i class="fa fa-globe"></i></div>
+                  <%= f.select :location, User::LOCATIONS, {}, { class: "form-control", autofocus: true } %>
                 </div>
               </div>
 
