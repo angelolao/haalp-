@@ -35,7 +35,7 @@
               <%= link_to 'Settings', edit_user_registration_path %>
             </li>
             <li>
-              <%= link_to 'Logout', destroy_user_session_path, :method => :delete %>
+              <%= link_to "Logout (#{ current_user.user_type })", destroy_user_session_path, :method => :delete %>
             </li>
           </ul>
         <% else %>
