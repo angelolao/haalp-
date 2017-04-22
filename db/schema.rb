@@ -83,9 +83,9 @@ ActiveRecord::Schema.define(version: 20170422010541) do
     t.string   "location"
     t.string   "user_type"
     t.string   "uid"
+    t.string   "provider"
     t.datetime "created_at",                                         null: false
     t.datetime "updated_at",                                         null: false
-    t.string   "provider"
     t.string   "category_ids"
     t.decimal  "money",                  precision: 10, default: 0
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
