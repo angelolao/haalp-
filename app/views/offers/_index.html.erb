@@ -2,7 +2,9 @@
   <%= link_to "finishing hiring", close_hiring_path(id: params[:id]), method: :patch, class: "btn btn-primary" %>
 <% end %>
 
-<h3><%= "Offer(s)" if @offers.count > 0  %></h3>
+<% if @offers.count > 0  %>
+  <h3>Offer(s)</h3>
+<% end %>
 <% @offers.each do |offer| %>
   <% user = offer.user %>
   <div class="offers-list-entry">

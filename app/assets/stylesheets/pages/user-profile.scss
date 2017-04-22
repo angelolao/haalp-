@@ -1,0 +1,30 @@
+.user-profile-name-holder {
+  border-bottom: 1px solid #dedede;
+  margin-bottom: 25px;
+  padding-bottom: 15px;
+
+  h1 {
+    margin: 0 auto 10px;
+  }
+
+  h4 {
+    color: #888;
+    font-size: 16px;
+  }
+}
+
+ul.user-profile-list {
+  list-style: none;
+  padding: 0;
+
+  li {
+    font-weight: bold;
+    margin-bottom: 15px;
+
+    strong {
+      color: #888;
+      display: inline-block;
+      width: 11%;
+    }
+  }
+}

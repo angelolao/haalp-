@@ -14,7 +14,7 @@
 //= require jquery_ujs
 //= require bootstrap.min
 //= require turbolinks
+//= require bootstrap-select.min
 //= require remodal
 //= require alertify
-//= require bootstrap-select.min
 //= require_tree .
