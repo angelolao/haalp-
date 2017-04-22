@@ -20,7 +20,7 @@ class TasksController < ApplicationController
   end
 
   def create
-    params[:task][:due_date] = DateTime.current + 7.days
+    params[:task][:due_date] = DateTime.current + 30.days
     redirect_to Task.create(permit_parameters)
   end
 
