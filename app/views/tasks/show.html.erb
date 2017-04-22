@@ -24,10 +24,14 @@
               <% if @task.status == "assigned" %>
                 <%= link_to "Task finished", complete_task_path(id: @task.id), method: :patch, class: "btn btn-done" %>
               <% end %>
-              <% if current_user.worker? %>
-                <button data-remodal-target="offer_modal" type="button" class="btn">Make an Offer</button>
-                <br />
-                <%= link_to "Cancel Offer", task_offer_path(@task), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-warning" %>
+
+              <% offer = Offer.offer(user_id: current_user.id, task_id: @task.id) %>
+              <% if current_user.worker? && offer.try(:status).blank? %>
+                <% if offer.try(:make_offer) %>
+                  <%= link_to "Cancel Offer", task_offer_path(@task, offer), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-warning" %>
+                <% else %>
+                  <button data-remodal-target="offer_modal" type="button" class="btn">Make an Offer</button>
+                <% end %>
               <% elsif @task.user_id == current_user.id %>
                 <%= link_to "Offer(s)", task_offers_path(@task), class: "btn" %>
                 <% if @task.status == "completed" %>
