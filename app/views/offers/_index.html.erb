@@ -28,7 +28,7 @@
               <%= f.submit "Accept", class: "btn btn-accept" %>
             <% end %>
           <% else %>
-            <div><%= offer.status.upcase %></div>
+            <span class="label-<%= offer.status %>"><%= offer.status.upcase %></span>
           <% end %>
         </li>
       </ul>
