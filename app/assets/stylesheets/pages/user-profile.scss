@@ -30,10 +30,11 @@ ul.user-profile-list {
 }
 
 .user-profile-comment {
-  background-color: #f8f8f8;
+  border-bottom: 1px solid #dedede;
   color: #595959;
   list-style: none;
-  padding: 25px;
+  margin-bottom: 15px;
+  padding: 0 0 8px;
 
   li {
     margin-bottom: 8px;
@@ -46,5 +47,10 @@ ul.user-profile-list {
 
   &-title {
     margin-top: 60px;
+  }
+
+  &-wrap {
+    background-color: #f8f8f8;
+    padding: 25px;
   }
 }
