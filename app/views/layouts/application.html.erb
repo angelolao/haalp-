@@ -23,6 +23,9 @@
     <%= render partial: 'shared/top_menu' %>
     <%= yield %>
 
+    <% if user_signed_in? %>
+      <%= render partial: "/shared/task_modal", locals: { submit_action: "post", url: tasks_path }  %>
+    <% end %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
     <% flash.each do |type, message|%>
